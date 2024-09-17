@@ -1,0 +1,12 @@
+header[tuiNavigationHeader] {
+    border-bottom: 1px solid var(--tui-border-normal);
+}
+
+header[tuiNavigationHeader]:before,
+header[tuiNavigationHeader]:after {
+    content: none;
+}
+
+header[tuiNavigationLogo] {
+    margin-inline-start: 0;
+}
