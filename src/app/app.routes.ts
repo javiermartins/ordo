@@ -5,10 +5,13 @@ import { ErrorComponent } from './pages/error/error.component';
 import { authGuard } from './guards/auth/auth.guard';
 import { loginGuard } from './guards/login/login.guard';
 import { LayoutComponent } from './components/layout/layout.component';
-import { NewProjectComponent } from './pages/new-project/new-project/new-project.component';
+import { NewProjectComponent } from './pages/new-project/new-project.component';
+import { ProjectComponent } from './pages/project/project.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
+    { path: 'error', component: ErrorComponent },
     {
         path: '',
         component: LayoutComponent,
@@ -17,8 +20,7 @@ export const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
             { path: 'new-project', component: NewProjectComponent },
+            { path: ':idProject', component: ProjectComponent },
         ],
-    },
-    { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
-    { path: 'error', component: ErrorComponent },
+    }
 ];

@@ -1,3 +1,8 @@
 <tui-root>
-    <router-outlet></router-outlet>
+    <div *ngIf="!loading">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="fixed top-2/4 h-screen w-screen" *ngIf="loading">
+        <tui-loader [inheritColor]="true" />
+    </div>
 </tui-root>

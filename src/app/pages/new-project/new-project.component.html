@@ -1,0 +1,14 @@
+<div class="max-w-sm p-4">
+    <form [formGroup]="projectForm">
+        <tui-input formControlName="name">
+            Project name
+            <input tuiTextfieldLegacy />
+        </tui-input>
+        <div class="mt-4">
+            <button size="m" tuiButton type="submit" appearance="whiteblock" [disabled]="projectForm.invalid || saving"
+                (click)="createNewProject()">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

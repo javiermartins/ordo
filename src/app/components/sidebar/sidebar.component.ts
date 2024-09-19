@@ -3,11 +3,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TuiDataList, TuiDropdown, TuiIcon } from '@taiga-ui/core';
 import { TuiChevron, TuiDataListDropdownManager, TuiFade } from '@taiga-ui/kit';
 import { TuiNavigation } from '@taiga-ui/layout';
+import { ProjectsService } from '../../services/projects/projects.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [
+    CommonModule,
     RouterLink,
     RouterLinkActive,
     TuiChevron,
@@ -19,9 +22,26 @@ import { TuiNavigation } from '@taiga-ui/layout';
     TuiNavigation,
   ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
+
   protected expanded = true;
+  public projects: any[] = [];
+
+  constructor(
+    private projectsService: ProjectsService
+  ) { }
+
+  async ngOnInit() {
+    await this.loadProjects();
+  }
+
+  async loadProjects() {
+    this.projectsService.projects$.subscribe((projects) => {
+      this.projects = projects;
+      console.log(projects);
+    });
+  }
 
 }

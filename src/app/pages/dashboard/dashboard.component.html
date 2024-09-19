@@ -1,10 +1,14 @@
-<span class="prueba">Dashboard</span>
-
-<div>
-    <div tuiCardLarge tuiHeader tuiSurface="elevated" [style.grid-column]="'span 6'">
-        <h2 tuiTitle>
-            Some random content
-            <span tuiSubtitle>A subtitle</span>
-        </h2>
+<div class="container mx-auto px-4">
+    <div tuiHeader="m">
+        <h2 tuiTitle>Projects</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6">
+        <div tuiCardLarge tuiHeader="xs" tuiSurface="elevated" class="cursor-pointer" *ngFor="let project of projects"
+            [routerLink]="['/', project.$id]">
+            <h2 tuiTitle>
+                {{project.name}}
+                <span tuiSubtitle>{{project.description}}</span>
+            </h2>
+        </div>
     </div>
 </div>

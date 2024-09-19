@@ -14,9 +14,9 @@ export class AuthService {
     this.databases = new Databases(client);
   }
 
-  async isAuthenticated(): Promise<boolean> {
+  async isAuthenticated() {
     try {
-      await account.get();
+      await this.getUser();
       return true;
     } catch (error) {
       return false;

@@ -1,23 +1,34 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { TuiSurface, TuiTitle } from '@taiga-ui/core';
 import { TuiCardLarge, TuiHeader } from '@taiga-ui/layout';
-import { AuthService } from '../../services/auth/auth.service';
+import { ProjectsService } from '../../services/projects/projects.service';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [TuiCardLarge, TuiHeader, TuiSurface, TuiTitle],
+    imports: [CommonModule, RouterLink, TuiCardLarge, TuiHeader, TuiSurface, TuiTitle],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
 
+    public projects: any[] = [];
+
     constructor(
-        private authService: AuthService
+        private projectsService: ProjectsService
     ) { }
 
     async ngOnInit() {
-        await this.authService.checkAndCreateUser();
+        await this.loadProjects();
+    }
+
+    async loadProjects() {
+        this.projectsService.projects$.subscribe((projects) => {
+            this.projects = projects;
+            console.log(projects);
+        });
     }
 
 }
