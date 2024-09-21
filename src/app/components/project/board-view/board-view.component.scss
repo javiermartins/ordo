@@ -2,6 +2,8 @@
     width: 400px;
     padding: 10px;
     border-radius: 15px;
+    height: fit-content;
+    background-color: var(--background-main);
 }
 
 .section-list {
@@ -36,13 +38,14 @@
 }
 
 .cdk-drag-placeholder {
-    opacity: 0;
+    opacity: 0.4;
 }
 
 .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+.cdk-drop-list-dragging .section-container:not(.cdk-drag-placeholder),
 .section-list .cdk-drop-list-dragging .card-board:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

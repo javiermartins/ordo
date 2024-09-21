@@ -1,16 +1,18 @@
 <div cdkDropListGroup class="flex">
-
-    @for (section of sections; track section) {
-    <div class="section-container" cdkDropList [cdkDropListData]="sections" (cdkDropListDropped)="drop($event)">
-        <div cdkDrag>
-            <div tuiHeader="xs" class="pb-2 bg-[var(--background-main)]">
+    <div class="flex" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="sections"
+        (cdkDropListDropped)="drop($event)">
+        @for (section of sections; track section) {
+        <div class="section-container" cdkDrag [cdkDragData]="section">
+            <div tuiHeader="xs" class="pb-2" cdkDragHandle>
                 <h2 tuiTitle class="p-2">{{section.title}}</h2>
             </div>
 
             <div class="section-list">
-                <div class="min-h-20" cdkDropList [cdkDropListData]="section.tasks" (cdkDropListDropped)="drop($event)">
+                <div cdkDropList #taskContainer id="{{section.id}}" [cdkDropListData]="section.tasks"
+                    (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="istaskPredicate"
+                    [cdkDropListConnectedTo]="taskContainers" class="min-h-20">
                     @for (task of section.tasks; track task) {
-                    <div class="card-board" cdkDrag (click)="openTask()">{{task.title}}</div>
+                    <div class="card-board" cdkDrag [cdkDragData]="task" (click)="openTask()">{{task.title}}</div>
                     }
                 </div>
                 <div class="flex justify-center">
@@ -21,7 +23,6 @@
                 </div>
             </div>
         </div>
+        }
     </div>
-    }
-
 </div>
