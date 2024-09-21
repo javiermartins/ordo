@@ -1,3 +1,7 @@
 :root {
+    --tui-background-accent-1: #585858;
     --tui-theme-color: #2e2e30;
+    --color-text: #1e1f21;
+    --color-text-weak: #6d6e6f;
+    --background-main: #f9f8f8;
 }

@@ -1,1 +1,25 @@
-<p>Project</p>
+<div class="bg-white">
+    <div tuiHeader="s" class="p-4">
+        <h2 tuiTitle class="mb-2">{{exampleproject.title}}</h2>
+    </div>
+
+    <tui-tabs [(activeItemIndex)]="activetab" class="px-4 max-h-9">
+        <button iconStart="@tui.clipboard-minus" tuiTab type="button">
+            Resume
+        </button>
+        <button disabled iconStart="@tui.list" tuiTab type="button">
+            List
+        </button>
+        <button iconStart="@tui.table" tuiTab type="button">
+            Board
+        </button>
+    </tui-tabs>
+</div>
+
+<div class="p-4">
+    @if (activetab === 0) {
+    <app-resume-view [project]="exampleproject"></app-resume-view>
+    } @else if (activetab === 2) {
+    <app-board-view [sections]="exampleproject.sections"></app-board-view>
+    }
+</div>

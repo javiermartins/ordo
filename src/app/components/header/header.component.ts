@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TuiAppearance, TuiButton, TuiIcon } from '@taiga-ui/core';
+import { TuiAppearance, TuiButton, TuiDataList, TuiDropdown, TuiIcon } from '@taiga-ui/core';
 import { TuiAvatar } from '@taiga-ui/kit';
 import { TuiHeader, TuiNavigation } from '@taiga-ui/layout';
 import { AuthService } from '../../services/auth/auth.service';
@@ -15,11 +15,14 @@ import { Router } from '@angular/router';
     TuiHeader,
     TuiIcon,
     TuiNavigation,
+    TuiDataList,
+    TuiDropdown
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  protected openMenu = false;
 
   constructor(
     private authService: AuthService,

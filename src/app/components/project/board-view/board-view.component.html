@@ -1,0 +1,27 @@
+<div cdkDropListGroup class="flex">
+
+    @for (section of sections; track section) {
+    <div class="section-container" cdkDropList [cdkDropListData]="sections" (cdkDropListDropped)="drop($event)">
+        <div cdkDrag>
+            <div tuiHeader="xs" class="pb-2 bg-[var(--background-main)]">
+                <h2 tuiTitle class="p-2">{{section.title}}</h2>
+            </div>
+
+            <div class="section-list">
+                <div class="min-h-20" cdkDropList [cdkDropListData]="section.tasks" (cdkDropListDropped)="drop($event)">
+                    @for (task of section.tasks; track task) {
+                    <div class="card-board" cdkDrag (click)="openTask()">{{task.title}}</div>
+                    }
+                </div>
+                <div class="flex justify-center">
+                    <button size="m" appearance="flat" tuiButton type="button" class="add-more-button"
+                        (click)="addTask(section)">
+                        <tui-icon icon="@tui.plus" [style.font-size]="'20px'" /> Add more
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+</div>
