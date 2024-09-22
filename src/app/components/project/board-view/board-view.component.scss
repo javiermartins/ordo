@@ -6,6 +6,16 @@
     background-color: var(--background-main);
 }
 
+.section-title {
+    font-weight: 600 !important;
+    font-size: 20px !important;
+}
+
+.options-button {
+    border-radius: 100%;
+    color: var(--color-text-weak) !important;
+}
+
 .section-list {
     min-height: 60px;
     background: #f0f0f0;
@@ -54,6 +64,19 @@
     text-align: center;
     height: 40px;
     margin: 5px 0;
-    color: var(--color-text-weak);
+    color: var(--color-text-weak) !important;
     width: 100%;
+}
+
+tui-dialog[data-appearance='task-detail-apperance'] {
+    margin: 0 0 0 auto;
+    border: 0;
+    height: 100vh;
+    background: white;
+    min-width: 500px;
+    border-radius: 15px 0 0 15px
+}
+
+tui-dialogs .t-overlay {
+    opacity: 0 !important;
 }

@@ -1,9 +1,9 @@
-<div class="container mx-auto px-4">
+<div class="container mx-auto p-8">
     <div tuiHeader="m">
         <h2 tuiTitle>Projects</h2>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6">
-        <div tuiCardLarge tuiHeader="xs" tuiSurface="elevated" class="cursor-pointer" *ngFor="let project of projects"
+        <div tuiCardMedium tuiSurface class="dashboard-card cursor-pointer" *ngFor="let project of projects"
             [routerLink]="['/', project.$id]">
             <h2 tuiTitle>
                 {{project.name}}

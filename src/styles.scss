@@ -2,3 +2,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.no-outline-input {
+
+    [tuiWrapper],
+    [tuiWrapper]:hover:not(._no-hover) {
+        background: inherit;
+        box-shadow: none;
+    }
+
+    [tuiWrapper]::after {
+        border: none;
+        color: transparent;
+    }
+}
+
+.no-outline-input:focus-visible {
+    outline: none;
+}

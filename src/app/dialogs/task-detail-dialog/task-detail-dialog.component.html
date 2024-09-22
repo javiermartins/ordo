@@ -1,0 +1,10 @@
+<div>
+    <form [formGroup]="taskForm">
+        <tui-input formControlName="title" [tuiTextfieldLabelOutside]="true" class="no-outline-input">
+            <input tuiTextfieldLegacy />
+        </tui-input>
+
+        <tui-textarea formControlName="description" class="field-medium" [expandable]="true" [maxLength]="400">
+        </tui-textarea>
+    </form>
+</div>

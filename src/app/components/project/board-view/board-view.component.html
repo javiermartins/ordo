@@ -1,18 +1,33 @@
-<div cdkDropListGroup class="flex">
+<div cdkDropListGroup class="flex p-2">
     <div class="flex" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="sections"
         (cdkDropListDropped)="drop($event)">
         @for (section of sections; track section) {
         <div class="section-container" cdkDrag [cdkDragData]="section">
-            <div tuiHeader="xs" class="pb-2" cdkDragHandle>
-                <h2 tuiTitle class="p-2">{{section.title}}</h2>
+            <div class="pb-2 flex items-center" cdkDragHandle>
+                <tui-input [tuiTextfieldLabelOutside]="true" class="no-outline-input w-full mr-2" tuiTextfieldSize="m">
+                    <input tuiTextfieldLegacy class="section-title" [(ngModel)]="section.title" />
+                </tui-input>
+                <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
+                    class="options-button" [tuiDropdown]="sectionOptions" [tuiDropdownOpen]="false">
+                    Options
+                </button>
+                <ng-template #sectionOptions>
+                    <tui-data-list tuiDataListDropdownManager size="s">
+                        <button iconStart="@tui.trash" tuiOption type="button" class="!text-[var(--tui-text-negative)]"
+                            (click)="deleteSection(section)">
+                            Delete section
+                        </button>
+                    </tui-data-list>
+                </ng-template>
             </div>
 
             <div class="section-list">
                 <div cdkDropList #taskContainer id="{{section.id}}" [cdkDropListData]="section.tasks"
-                    (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="istaskPredicate"
+                    (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="isTaskPredicate"
                     [cdkDropListConnectedTo]="taskContainers" class="min-h-20">
                     @for (task of section.tasks; track task) {
-                    <div class="card-board" cdkDrag [cdkDragData]="task" (click)="openTask()">{{task.title}}</div>
+                    <div class="card-board" cdkDrag [cdkDragData]="task" (click)="openTask(section, task)">
+                        {{task.title}}</div>
                     }
                 </div>
                 <div class="flex justify-center">
@@ -24,5 +39,21 @@
             </div>
         </div>
         }
+    </div>
+
+    <div class="flex">
+        <div class="section-container">
+            <div tuiHeader="xs" class="pb-2">
+                <button size="m" appearance="flat" tuiButton tuiTitle type="button"
+                    class="p-2 !text-[var(--color-text-weak)]" (click)="addSection()">
+                    <tui-icon icon="@tui.plus" [style.font-size]="'20px'" /> Add section
+                </button>
+            </div>
+
+            <div class="section-list">
+                <div class="min-h-20">
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,25 +1,39 @@
-<div class="bg-white">
-    <div tuiHeader="s" class="p-4">
-        <h2 tuiTitle class="mb-2">{{exampleproject.title}}</h2>
+<div class="flex flex-col w-max min-w-full">
+    <div class="bg-white">
+        <div tuiHeader="s" class="p-4">
+            <h2 tuiTitle class="mb-2">{{exampleproject.title}}</h2>
+            <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
+                class="options-button" [tuiDropdown]="sectionOptions" [tuiDropdownOpen]="false">
+                Options
+            </button>
+            <ng-template #sectionOptions>
+                <tui-data-list tuiDataListDropdownManager size="s">
+                    <button iconStart="@tui.trash" tuiOption type="button" class="!text-[var(--tui-text-negative)]"
+                        (click)="deleteProject()">
+                        Delete project
+                    </button>
+                </tui-data-list>
+            </ng-template>
+        </div>
+
+        <tui-tabs [(activeItemIndex)]="activetab" class="px-4 max-h-9">
+            <button iconStart="@tui.clipboard-minus" tuiTab type="button">
+                Resume
+            </button>
+            <button disabled iconStart="@tui.list" tuiTab type="button">
+                List
+            </button>
+            <button iconStart="@tui.table" tuiTab type="button">
+                Board
+            </button>
+        </tui-tabs>
     </div>
 
-    <tui-tabs [(activeItemIndex)]="activetab" class="px-4 max-h-9">
-        <button iconStart="@tui.clipboard-minus" tuiTab type="button">
-            Resume
-        </button>
-        <button disabled iconStart="@tui.list" tuiTab type="button">
-            List
-        </button>
-        <button iconStart="@tui.table" tuiTab type="button">
-            Board
-        </button>
-    </tui-tabs>
-</div>
-
-<div class="p-4">
-    @if (activetab === 0) {
-    <app-resume-view [project]="exampleproject"></app-resume-view>
-    } @else if (activetab === 2) {
-    <app-board-view [sections]="exampleproject.sections"></app-board-view>
-    }
+    <div>
+        @if (activetab === 0) {
+        <app-resume-view [project]="exampleproject"></app-resume-view>
+        } @else if (activetab === 2) {
+        <app-board-view [sections]="exampleproject.sections"></app-board-view>
+        }
+    </div>
 </div>
