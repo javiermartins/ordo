@@ -237,7 +237,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@^17.0.0", "@angular/core@^17.0.0 || ^18.0.0", "@angular/core@^17.3.0", "@angular/core@>=15.0.0", "@angular/core@>=16.0.0", "@angular/core@17.3.12":
+"@angular/core@^17.0.0", "@angular/core@^17.0.0 || ^18.0.0", "@angular/core@^17.3.0", "@angular/core@>=16.0.0", "@angular/core@17.3.12":
   version "17.3.12"
   resolved "https://registry.npmjs.org/@angular/core/-/core-17.3.12.tgz"
   integrity sha512-MuFt5yKi161JmauUta4Dh0m8ofwoq6Ino+KoOtkYMBGsSx+A7dSm+DUxxNwdj7+DNyg3LjVGCFgBFnq4g8z06A==
@@ -258,7 +258,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/platform-browser@^17.3.0", "@angular/platform-browser@>=15.0.0", "@angular/platform-browser@>=16.0.0", "@angular/platform-browser@17.3.12":
+"@angular/platform-browser@^17.3.0", "@angular/platform-browser@>=16.0.0", "@angular/platform-browser@17.3.12":
   version "17.3.12"
   resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-17.3.12.tgz"
   integrity sha512-DYY04ptWh/ulMHzd+y52WCE8QnEYGeIiW3hEIFjCN8z0kbIdFdUtEB0IK5vjNL3ejyhUmphcpeT5PYf3YXtqWQ==
@@ -1381,53 +1381,53 @@
   dependencies:
     call-bind "^1.0.7"
 
-"@maskito/angular@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/@maskito/angular/-/angular-3.0.1.tgz"
-  integrity sha512-QAf6RxcwvLR4jWMpt1pMjMEN0B3FNQlKgddb6hYRWN8TaZ2dA29ZXrhOE+YDLjOjQqQ7/TjmH0CSQ9F06K4ucA==
+"@maskito/angular@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/@maskito/angular/-/angular-3.0.2.tgz"
+  integrity sha512-il2sra++9IAaAELyvbWaLulj/kAPVwu9fK5IDtHltKCUD534/cRWQT0N3mY+mtcwPU76hhSHPgFLAZFm+JtuOQ==
   dependencies:
-    tslib "2.6.3"
+    tslib "2.7.0"
 
-"@maskito/core@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/@maskito/core/-/core-3.0.1.tgz"
-  integrity sha512-etoVAuCb2fI3+34ppJCdOb5RTUM1aDRD4EZZffkpGSP67o1mdIY4fK3wRjzusVPAttzvCG3XccBiJ9W4abWWkQ==
+"@maskito/core@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/@maskito/core/-/core-3.0.2.tgz"
+  integrity sha512-UGdVTwCQB+pgcxwLTA30VCAsVdACY8zT7xR/26dsaY9dg5xZ0uiBQ1GImDo6Icfb51K+O4n1lsYS3uBkKRuJMg==
 
-"@maskito/kit@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/@maskito/kit/-/kit-3.0.1.tgz"
-  integrity sha512-je5XnVRRtM2YqvMX5T8S7eGsTObc/Owz0iO3QoYJJDzqCHcc307lFhTYfzfWw2GGZWS4e7amUtGTfHk+qWfiyw==
+"@maskito/kit@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/@maskito/kit/-/kit-3.0.2.tgz"
+  integrity sha512-haaw1+7fJsGcZAqxxXhEORVl3fYN89LOiLulni5dvPTLzd5ykdPbUHBmVBov9eV0pJxV71WJLb20yHLTB56epw==
 
-"@maskito/phone@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/@maskito/phone/-/phone-3.0.1.tgz"
-  integrity sha512-i4hNBOdFEJ4yrwjJnhtXAUzsgjS7z3HpSkQP9fuMADjD3wlDW+/XxdM7z1Q4+kziUTvqkKsMYcVCgmy4EOUxnA==
+"@maskito/phone@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/@maskito/phone/-/phone-3.0.2.tgz"
+  integrity sha512-WzgzO9zvlob3+jLDptYvxgbNOk9cjbzRi75S8El7hP9dbefQ8IVuSzJAx7VXq+Q7o4Ki/MZqu5yTmHlFwwdT8Q==
 
-"@ng-web-apis/common@^4.2.1", "@ng-web-apis/common@>=4.2.1":
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/@ng-web-apis/common/-/common-4.3.0.tgz"
-  integrity sha512-+NnES99nUODfQePr7V2QMzUGXgcUbVGz5aVOEg7FZeHI9UrrWJdMalYLotRRrnru+TUH4r5L/B25Iab+esOVXQ==
-  dependencies:
-    tslib "^2.3.0"
-
-"@ng-web-apis/intersection-observer@^4.2.1":
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/@ng-web-apis/intersection-observer/-/intersection-observer-4.3.0.tgz"
-  integrity sha512-ijfSdq5w3ATHm4QQOheqeKZby3KEAwrXZjsKVsODkMOvR5ZObDKcGQEjatjowcX1aVk0PTc9egL/ruPxygAZVA==
+"@ng-web-apis/common@^4.6.3", "@ng-web-apis/common@>=4.6.3":
+  version "4.6.3"
+  resolved "https://registry.npmjs.org/@ng-web-apis/common/-/common-4.6.3.tgz"
+  integrity sha512-1HRjiU2eSUXEVsN1EOtuXJTYmQsqz6h5vkgi8g6qOfEsxL4HbWtbnqtblep7w5dw2SWZ6qpPx6fasanGWKmA6A==
   dependencies:
     tslib "^2.3.0"
 
-"@ng-web-apis/mutation-observer@^4.2.1":
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/@ng-web-apis/mutation-observer/-/mutation-observer-4.3.0.tgz"
-  integrity sha512-LEAO4vixlfnvplpRSDstxpbXKa5jGHDo44wD7nLFMHjIoT8TKwnvSbUP2R2klElUb/S4KlIfS0raTebONwdt3A==
+"@ng-web-apis/intersection-observer@^4.6.3":
+  version "4.6.3"
+  resolved "https://registry.npmjs.org/@ng-web-apis/intersection-observer/-/intersection-observer-4.6.3.tgz"
+  integrity sha512-XeCLvvOmkKAXD+MRSMHiuoOg4QYvoUKfcEiFjIa1n3h/l3PFLo6ZsTSQGY3PNGFgaBIFQedn3nQsBqC152VsVQ==
   dependencies:
     tslib "^2.3.0"
 
-"@ng-web-apis/resize-observer@^4.2.1":
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/@ng-web-apis/resize-observer/-/resize-observer-4.3.0.tgz"
-  integrity sha512-vn7oElcttyALk29kTjUKpq5/rf2M7wbIYyhuspd8GzS43sCVOPYV36LqCF4kG0Nc0HN+ISO1Nu2Hm90PvWi9/w==
+"@ng-web-apis/mutation-observer@^4.6.3":
+  version "4.6.3"
+  resolved "https://registry.npmjs.org/@ng-web-apis/mutation-observer/-/mutation-observer-4.6.3.tgz"
+  integrity sha512-D4BBAy/0DK17sYOT3fax7n6FbjXq1UFW8U7TT7wGoC85+9MUxqbu8qNNDfGU6ilcQwI0hQ68CCLv4IT8QpK0Dw==
+  dependencies:
+    tslib "^2.3.0"
+
+"@ng-web-apis/resize-observer@^4.6.3":
+  version "4.6.3"
+  resolved "https://registry.npmjs.org/@ng-web-apis/resize-observer/-/resize-observer-4.6.3.tgz"
+  integrity sha512-Kc9B5qcEF9+fHxyv4tjQlxicoXZG5688W9nk+dCneq57bFBI6FgxrUc1fi111fGBRBcQ14LXxxVw5Wqw7Tap1g==
   dependencies:
     tslib "^2.3.0"
 
@@ -1618,72 +1618,72 @@
   resolved "https://registry.npmjs.org/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz"
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
 
-"@taiga-ui/cdk@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/@taiga-ui/cdk/-/cdk-4.6.0.tgz"
-  integrity sha512-1MW3O7jKfdM6R9zn2xcSNBc5tGIrpQK5aCA/fRHZGj6JjVDHUtly46OfyEwXABDM7JIM7LoJYb/Cv2O/1lh9Kg==
+"@taiga-ui/cdk@^4.7.0", "@taiga-ui/cdk@^4.8.1":
+  version "4.8.1"
+  resolved "https://registry.npmjs.org/@taiga-ui/cdk/-/cdk-4.8.1.tgz"
+  integrity sha512-kMiVB27s0NP6iRRn5tsWCTbbRJ7j6eJr1fdCyMOPI063PFOaLG0sCXnlXyIt0nKxTB+yfchE03nCIHHkdKta2g==
   dependencies:
     tslib "2.7.0"
   optionalDependencies:
     "@angular-devkit/core" ">=16.0.0"
     "@angular-devkit/schematics" ">=16.0.0"
     "@schematics/angular" ">=16.0.0"
-    ng-morph "^4.6.5"
+    ng-morph "^4.8.2"
     parse5 "^7.1.2"
 
-"@taiga-ui/core@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/@taiga-ui/core/-/core-4.6.0.tgz"
-  integrity sha512-qvba1X40mczvz81ACAgFog8z38okZTUV3vnPh9mOkXjUlSUTYTxYP6zkP0AHPglchRO87eJ79ylESkc9Lhc62g==
+"@taiga-ui/core@^4.7.0", "@taiga-ui/core@^4.8.1":
+  version "4.8.1"
+  resolved "https://registry.npmjs.org/@taiga-ui/core/-/core-4.8.1.tgz"
+  integrity sha512-AIIP3N8Sva9zzn3F/88NZEiAMzL/z+DTM6qwQGp/5rKpUPnAb3h4fhvnI+AQW9fEmQw5SVyZ8zuCRgvwrpUo4Q==
   dependencies:
     tslib "^2.7.0"
 
-"@taiga-ui/event-plugins@^4.0.2", "@taiga-ui/event-plugins@^4.1.2":
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/@taiga-ui/event-plugins/-/event-plugins-4.2.0.tgz"
-  integrity sha512-FjCwccxHcGlUDcvXmAv+3pgS9Wa3nn6a3b0j5othHq/YGW+BhFJaI0QXlpP9EsOVj32aXnELAv1sKLxT2fUFPg==
+"@taiga-ui/event-plugins@^4.0.2", "@taiga-ui/event-plugins@^4.2.3":
+  version "4.2.3"
+  resolved "https://registry.npmjs.org/@taiga-ui/event-plugins/-/event-plugins-4.2.3.tgz"
+  integrity sha512-n8JoP8KZqGD6nm8jQWtao/HqiuMSr099LHHNhGxONmosTK40RtAna6tKkPPNw63MVcbQuf8fFIo4beVclY6KaA==
   dependencies:
     tslib "^2.3.0"
 
-"@taiga-ui/i18n@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/@taiga-ui/i18n/-/i18n-4.6.0.tgz"
-  integrity sha512-h+iff7QreOWfeK98k54Ey8yOoTal1rrDdnu2vnKoggDIKtZbcI0p0ekQWhUmm5vjoMIK4kYzu48e/a9POUyq6A==
+"@taiga-ui/i18n@^4.8.1":
+  version "4.8.1"
+  resolved "https://registry.npmjs.org/@taiga-ui/i18n/-/i18n-4.8.1.tgz"
+  integrity sha512-D4AIKf0X6SeXRKsJps6Afq4VPurMdOwG8FIsQVR0QpVsdCS6cN61vKZuG0IpTwmrBUNo0qFVJ+stso6D2h8KCg==
   dependencies:
     tslib "^2.7.0"
 
-"@taiga-ui/icons@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/@taiga-ui/icons/-/icons-4.6.0.tgz"
-  integrity sha512-cj0zpTDYtgUQ8kCQZenHmK28xUfvQS4Q8dHfgg+8R8S6442i9eygH+mTiEQgkBOq67iWsUwZiaODIFyUw2Dgpg==
+"@taiga-ui/icons@^4.7.0":
+  version "4.8.1"
+  resolved "https://registry.npmjs.org/@taiga-ui/icons/-/icons-4.8.1.tgz"
+  integrity sha512-Nc4gWcHjcAUecLO/exLToNfMveV9tB6xyubw/Mc0Qp7iZsjDZ6FZUQzBYtmqHMJMtGvYCGcV9qNa52VeONTDXw==
   dependencies:
     tslib "^2.3.0"
 
-"@taiga-ui/kit@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/@taiga-ui/kit/-/kit-4.6.0.tgz"
-  integrity sha512-NuUHB99FyXBH26lxMDzjGTGkUzFVfceVFmpDIkbqaCkLDixWL3zxy96qrgkK6Wm+RpMgf4NJkR4ym5iLgsYzXg==
+"@taiga-ui/kit@^4.7.0", "@taiga-ui/kit@^4.8.1":
+  version "4.8.1"
+  resolved "https://registry.npmjs.org/@taiga-ui/kit/-/kit-4.8.1.tgz"
+  integrity sha512-SZBeL72XhRercWE4o2T+O7pnP99c6RtBiWWVlHpH4I7P49KD7cRwpsMuomF3eXUom2a1hGiLX5TozzUJ2w+yRw==
   dependencies:
     tslib "^2.7.0"
 
-"@taiga-ui/layout@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/@taiga-ui/layout/-/layout-4.6.0.tgz"
-  integrity sha512-poPLVeCkCEc1E47XeH9r37Vb5Po33nTkNqgn1ZUo1dniN7mvyDYsJjUk+/KH5R1lSxbvnbjcBnc65O0saufxdw==
+"@taiga-ui/layout@^4.7.0":
+  version "4.8.1"
+  resolved "https://registry.npmjs.org/@taiga-ui/layout/-/layout-4.8.1.tgz"
+  integrity sha512-3kAL6OGDM2IKUh6GRI0Kh0BSagdYtxvq2WM8qZZ0GNVZjgfr+fCxP9cbolqqitZZyVrEyMystzsuu+x3Eh9Ffg==
   dependencies:
     tslib "^2.7.0"
 
-"@taiga-ui/legacy@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/@taiga-ui/legacy/-/legacy-4.6.0.tgz"
-  integrity sha512-TI1TEzHgifqFeYYVGo2Ups1KqgJqfyFRnwHP+Fr98XoXRIDWNb1vJe3riWPQAEawdBlAYFmSWRO4pJ9F3W4zzg==
+"@taiga-ui/legacy@^4.7.0":
+  version "4.8.1"
+  resolved "https://registry.npmjs.org/@taiga-ui/legacy/-/legacy-4.8.1.tgz"
+  integrity sha512-hTMuKmz3e4eCaee5yBuHs92vmmJpqkQUGHaj5c4B8FUnAU4vy9WTO+OW+tNaY7vY2QkuRIg1C+LFHdQPbDrAPg==
   dependencies:
     tslib "^2.7.0"
 
-"@taiga-ui/polymorpheus@^4.7.0":
-  version "4.7.1"
-  resolved "https://registry.npmjs.org/@taiga-ui/polymorpheus/-/polymorpheus-4.7.1.tgz"
-  integrity sha512-RyHJV7IxrMhbDAYUCY+XBD7hmh+UtKvyGuQz+JAOmA3RUbh63DqJVDfm7EBGDq8WPb+N4toUIF0hgeWWdCZCJQ==
+"@taiga-ui/polymorpheus@^4.7.3":
+  version "4.7.3"
+  resolved "https://registry.npmjs.org/@taiga-ui/polymorpheus/-/polymorpheus-4.7.3.tgz"
+  integrity sha512-vVMc2jtxTr7ETt+Kr5oP/Rd2SqMxemfP4b0JhTJV23BxuNL8sCcISZOFTbavPDueVi0b/7QV+U76yaG3sDKCtQ==
   dependencies:
     tslib "^2.7.0"
 
@@ -4345,9 +4345,9 @@ less@*, "less@^3.5.0 || ^4.0.0", less@4.2.0:
     source-map "~0.6.0"
 
 libphonenumber-js@>=1.0.0:
-  version "1.11.8"
-  resolved "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.11.8.tgz"
-  integrity sha512-0fv/YKpJBAgXKy0kaS3fnqoUVN8901vUYAKIGD/MWZaDfhJt1nZjPL3ZzdZBt/G8G8Hw2J1xOIrXWdNHFHPAvg==
+  version "1.11.9"
+  resolved "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.11.9.tgz"
+  integrity sha512-Zs5wf5HaWzW2/inlupe2tstl0I/Tbqo7lH20ZLr6Is58u7Dz2n+gRFGNlj9/gWxFvNfp9+YyDsiegjNhdixB9A==
 
 license-webpack-plugin@4.0.2:
   version "4.0.2"
@@ -4777,10 +4777,10 @@ neo-async@^2.6.2:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ng-morph@^4.6.5:
-  version "4.6.5"
-  resolved "https://registry.npmjs.org/ng-morph/-/ng-morph-4.6.5.tgz"
-  integrity sha512-0uKwJFrExv1OR961o+RHMSZmlld0ULEPF+roL9IIQhg7f8FUq5apGWPYgv83HYTMQDrZRiWg+4sj5HdKkL2YVQ==
+ng-morph@^4.8.2:
+  version "4.8.2"
+  resolved "https://registry.npmjs.org/ng-morph/-/ng-morph-4.8.2.tgz"
+  integrity sha512-8B7Z0q7cVNBAhm7dUKSgFY9RZcQcgx31G1/HbMDiOiQFzwe8KAOfIij+UE2FblNwF82Xb3Gy+5DXpHxmvGyNQQ==
   dependencies:
     jsonc-parser "3.3.1"
     minimatch "10.0.1"
@@ -5312,16 +5312,7 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.1.0, postcss-value-parser@^
   resolved "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-"postcss@^7.0.0 || ^8.0.1", postcss@^8.0.0, postcss@^8.1.0, postcss@^8.2.14, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.33, postcss@^8.4.35, postcss@^8.4.47, postcss@>=8.0.9:
-  version "8.4.47"
-  resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.47.tgz"
-  integrity sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==
-  dependencies:
-    nanoid "^3.3.7"
-    picocolors "^1.1.0"
-    source-map-js "^1.2.1"
-
-postcss@8.4.35:
+"postcss@^7.0.0 || ^8.0.1", postcss@8.4.35:
   version "8.4.35"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.35.tgz"
   integrity sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==
@@ -5329,6 +5320,15 @@ postcss@8.4.35:
     nanoid "^3.3.7"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
+
+postcss@^8.0.0, postcss@^8.1.0, postcss@^8.2.14, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.33, postcss@^8.4.35, postcss@^8.4.47, postcss@>=8.0.9:
+  version "8.4.47"
+  resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.47.tgz"
+  integrity sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==
+  dependencies:
+    nanoid "^3.3.7"
+    picocolors "^1.1.0"
+    source-map-js "^1.2.1"
 
 proc-log@^3.0.0:
   version "3.0.0"
@@ -5651,7 +5651,7 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-"rxjs@^6.5.3 || ^7.4.0", rxjs@^7.8.1, rxjs@>=6.0.0, rxjs@>=7.0.0, rxjs@~7.8.0, rxjs@7.8.1:
+"rxjs@^6.5.3 || ^7.4.0", rxjs@^7.8.1, rxjs@>=7.0.0, rxjs@~7.8.0, rxjs@7.8.1:
   version "7.8.1"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.8.1.tgz"
   integrity sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==
@@ -6393,11 +6393,6 @@ tslib@2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
-
-tslib@2.6.3:
-  version "2.6.3"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.3.tgz"
-  integrity sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==
 
 tuf-js@^2.2.1:
   version "2.2.1"
