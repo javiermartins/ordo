@@ -1,7 +1,8 @@
+@if(project) {
 <div class="flex flex-col w-max min-w-full">
     <div class="bg-white">
         <div tuiHeader="s" class="p-4">
-            <h2 tuiTitle class="mb-2">{{exampleproject.title}}</h2>
+            <h2 tuiTitle class="mb-2">{{project.name}}</h2>
             <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
                 class="options-button" [tuiDropdown]="sectionOptions" [tuiDropdownOpen]="false">
                 Options
@@ -31,9 +32,14 @@
 
     <div>
         @if (activetab === 0) {
-        <app-resume-view [project]="exampleproject"></app-resume-view>
+        <app-resume-view [project]="project"></app-resume-view>
         } @else if (activetab === 2) {
         <app-board-view [sections]="exampleproject.sections"></app-board-view>
         }
     </div>
 </div>
+} @else {
+<div class="flex justify-center items-center h-full">
+    <tui-loader [inheritColor]="true" />
+</div>
+}

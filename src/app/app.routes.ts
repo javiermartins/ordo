@@ -20,7 +20,7 @@ export const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
             { path: 'new-project', component: NewProjectComponent },
-            { path: ':idProject', component: ProjectComponent },
+            { path: ':projectId', component: ProjectComponent },
         ],
     }
 ];

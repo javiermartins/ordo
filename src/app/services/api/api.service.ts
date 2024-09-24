@@ -14,6 +14,15 @@ export class ApiService {
     this.databases = new Databases(client);
   }
 
+  async getDocument(collectionId: string, documentId: string, queries?: any[]) {
+    return await this.databases.getDocument(
+      environment.DATABASE_ID,
+      collectionId,
+      documentId,
+      queries
+    );
+  }
+
   async getDocuments(collectionId: string, queries?: any[]) {
     return await this.databases.listDocuments(
       environment.DATABASE_ID,
@@ -29,6 +38,14 @@ export class ApiService {
       documentId,
       data,
       permissions
+    );
+  }
+
+  async deleteDocument(collectionId: string, documentId: string) {
+    return await this.databases.deleteDocument(
+      environment.DATABASE_ID,
+      collectionId,
+      documentId
     );
   }
 }
