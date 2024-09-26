@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
 import { ProjectsService } from '../../services/projects/projects.service';
+import { Query } from 'appwrite';
 
 @Component({
   selector: 'app-project',
@@ -22,33 +23,8 @@ import { ProjectsService } from '../../services/projects/projects.service';
 export class ProjectComponent implements OnInit {
   protected activetab = 2;
 
-  public exampleproject = {
-    "id": "683472895798hdo938",
-    "title": "Project 1",
-    "description": "Description of project 1",
-    "sections": [
-      {
-        "id": 1,
-        "title": 'To do',
-        "tasks": [
-          { id: 1, title: 'Get to work' },
-          { id: 2, title: 'Pick up groceries' },
-          { id: 2, title: 'Go home' }
-        ]
-      },
-      {
-        "id": 2,
-        "title": 'Done',
-        "tasks": [
-          { id: 1, title: 'Get up' },
-          { id: 2, title: 'Brush teeth' },
-          { id: 2, title: 'Take a shower' }
-        ]
-      }
-    ]
-  }
-
   public project: any;
+  public sections: any[] = [];
   private projectId: string = '';
 
   constructor(
@@ -71,9 +47,24 @@ export class ProjectComponent implements OnInit {
   }
 
   async getProject() {
-    this.apiService.getDocument(environment.PROJECTS_COLLECTION, this.projectId).then((project) => {
+    this.apiService.getDocument(environment.PROJECTS_COLLECTION, this.projectId).then(async (project) => {
       this.project = project;
+      await this.getSections();
     });
+  }
+
+  async getSections() {
+    this.apiService.getDocuments(environment.SECTIONS_COLLECTION, [Query.equal('projectId', this.projectId)]).then(async (sections) => {
+      this.sections = sections.documents;
+      await this.sections.forEach((section) => {
+        section.tasks = this.getTasks(section);
+      });
+    });
+  }
+
+  async getTasks(section: any) {
+    this.apiService.getDocuments(environment.TASKS_COLLECTION, [Query.equal('sectionId', section.$id)])
+      .then(tasks => section.tasks = tasks.documents);
   }
 
   async deleteProject() {

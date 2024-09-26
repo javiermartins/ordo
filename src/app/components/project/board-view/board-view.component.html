@@ -28,7 +28,8 @@
                     [cdkDropListConnectedTo]="taskContainers" class="min-h-20">
                     @for (task of section.tasks; track task) {
                     <div class="card-board" cdkDrag [cdkDragData]="task" (click)="openTask(section, task)">
-                        {{task.title}}</div>
+                        {{task.title}}
+                    </div>
                     }
                 </div>
                 <div class="flex justify-center">

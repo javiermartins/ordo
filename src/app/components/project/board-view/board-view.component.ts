@@ -63,11 +63,10 @@ export class BoardViewComponent implements AfterViewInit {
   addSection() {
     this.sections.push(
       {
-        id: Math.random(),
-        title: 'New section',
-        tasks: []
+        title: ''
       }
     );
+
   }
 
   deleteSection(deleteSection: any) {
