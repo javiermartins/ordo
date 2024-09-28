@@ -1,34 +1,94 @@
 import { Injectable } from '@angular/core';
-import { Query } from 'appwrite';
-import { BehaviorSubject } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { BehaviorSubject, combineLatest, map, mergeMap, of, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
-import { ApiService } from '../api/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
 
-  private projectsSubject = new BehaviorSubject<any[]>([]);
+  private projectsSubject = new BehaviorSubject<any>([]);
   public projects$ = this.projectsSubject.asObservable();
 
   constructor(
     private authService: AuthService,
-    private apiService: ApiService
-  ) {
-    this.loadProjects();
+    private afs: AngularFirestore
+  ) { }
+
+  loadProjects() {
+    const user = this.authService.user;
+
+    this.afs.collection(environment.PROJECTS_COLLECTION, ref => ref.where('ownerId', '==', user?.uid))
+      .snapshotChanges()
+      .pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data as Object };
+        }))
+      ).subscribe((projects: any) => {
+        this.projectsSubject.next(projects);
+      });
   }
 
-  public async loadProjects() {
-    const user = await this.authService.getUser();
+  createNewProject(project: any) {
+    return this.afs.collection(environment.PROJECTS_COLLECTION).add(project);
+  }
 
-    try {
-      const projects = await this.apiService.getDocuments(environment.PROJECTS_COLLECTION, [Query.equal('owner_id', user.$id)]);
+  getProject(projectId: string) {
+    return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}`).valueChanges().pipe(
+      switchMap(project => {
+        const sectionsUrl = `${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}`;
+        const sections$ = this.afs.collection(sectionsUrl).snapshotChanges().pipe(
+          map(actions =>
+            actions.map(a => {
+              const data = a.payload.doc.data();
+              const id = a.payload.doc.id;
+              return { id, ...data as {} };
+            })
+          )
+        );
 
-      this.projectsSubject.next(projects.documents);
-    } catch (error) {
-      console.error('Error fetching projects: ', error);
-    }
+        const sectionsWithTasks$ = sections$.pipe(
+          mergeMap(sections => {
+            if (sections.length === 0) {
+              return of([]);
+            }
+            return combineLatest(
+              sections.map(section =>
+                this.afs.collection(`${sectionsUrl}/${section.id}/${environment.TASKS_COLLECTION}`).snapshotChanges().pipe(
+                  map(taskActions => {
+                    const tasks = taskActions.map(taskAction => {
+                      const taskData = taskAction.payload.doc.data();
+                      const taskId = taskAction.payload.doc.id;
+                      return { id: taskId, ...taskData as {} };
+                    });
+                    return { ...section, tasks };
+                  })
+                )
+              )
+            );
+          })
+        );
+
+        return combineLatest([of(project), sectionsWithTasks$]).pipe(
+          map(([project, sectionsWithTasks]) => ({
+            id: projectId,
+            ...project as {},
+            sections: sectionsWithTasks
+          }))
+        );
+      })
+    );
+  }
+
+  deleteProject(projectId: string) {
+    return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}`).delete();
+  }
+
+  async updateDescription(projectId: string, newDescription: string) {
+    this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}`).update({ description: newDescription });
   }
 }

@@ -34,13 +34,13 @@ export class SidebarComponent {
   ) { }
 
   async ngOnInit() {
+    await this.projectsService.loadProjects();
     await this.loadProjects();
   }
 
   async loadProjects() {
     this.projectsService.projects$.subscribe((projects) => {
       this.projects = projects;
-      console.log(projects);
     });
   }
 

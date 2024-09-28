@@ -4,7 +4,7 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6">
         <div tuiCardMedium tuiSurface class="dashboard-card cursor-pointer" *ngFor="let project of projects"
-            [routerLink]="['/', project.$id]">
+            [routerLink]="['/', project.id]">
             <h2 tuiTitle>
                 {{project.name}}
                 <span tuiSubtitle>{{project.description}}</span>

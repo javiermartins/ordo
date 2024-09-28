@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { account } from '../../../lib/appwrite';
-import { OAuthProvider } from 'appwrite';
 import { TuiButton } from '@taiga-ui/core';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,23 +13,23 @@ import { TuiButton } from '@taiga-ui/core';
 })
 export class LoginComponent {
 
-  public account: any;
-
-  constructor() {
-    this.getUserData();
-  }
-
-  async getUserData() {
-    this.account = await account.get();
-  }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   async loginWithGoogle() {
-    try {
-      await account.createOAuth2Session(OAuthProvider.Google, 'http://localhost:4200/', 'http://localhost:4200/error');
-    } catch (error) {
-      console.error(error)
-    }
+    this.authService.loginWithGoogle().then(async () => {
+      await this.checkAndCreateUser();
+    }).catch(error => {
+      console.error(error);
+    });
   }
 
+  async checkAndCreateUser() {
+    await this.authService.checkAndCreateUser().then(() => {
+      this.router.navigate(['/dashboard']);
+    });
+  }
 
 }

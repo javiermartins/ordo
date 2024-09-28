@@ -2,12 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiButton } from '@taiga-ui/core';
 import { TuiInputModule } from '@taiga-ui/legacy';
-import { environment } from '../../../environments/environment';
-import { ID } from 'appwrite';
-import { account } from '../../../lib/appwrite';
-import { ApiService } from '../../services/api/api.service';
 import { Router } from '@angular/router';
 import { ProjectsService } from '../../services/projects/projects.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-new-project',
@@ -25,7 +22,7 @@ export class NewProjectComponent {
   });
 
   constructor(
-    private apiService: ApiService,
+    private authService: AuthService,
     private projectsService: ProjectsService,
     private router: Router
   ) { }
@@ -33,14 +30,14 @@ export class NewProjectComponent {
   async createNewProject() {
     this.saving = true;
     const projectName = this.projectForm.controls['name'].value;
-    const user: any = await account.get();
+    const user = this.authService.user;
     const data = {
       name: projectName,
-      created_date: new Date(),
-      owner_id: user.$id
+      createdDate: new Date(),
+      ownerId: user?.uid
     };
 
-    await this.apiService.createDocument(environment.PROJECTS_COLLECTION, ID.unique(), data).then(async () => {
+    await this.projectsService.createNewProject(data).then(async () => {
       await this.projectsService.loadProjects();
       this.router.navigate(['/dashboard']);
     }).catch(() => {

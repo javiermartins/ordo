@@ -27,7 +27,6 @@ export class DashboardComponent {
     async loadProjects() {
         this.projectsService.projects$.subscribe((projects) => {
             this.projects = projects;
-            console.log(projects);
         });
     }
 

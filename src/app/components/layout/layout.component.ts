@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RouterOutlet } from '@angular/router';
 import { TuiNavigation } from '@taiga-ui/layout';
-import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -12,15 +11,6 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent implements OnInit {
-
-  constructor(
-    private authService: AuthService
-  ) { }
-
-  async ngOnInit() {
-    await this.authService.checkAndCreateUser();
-  }
-
+export class LayoutComponent {
 
 }

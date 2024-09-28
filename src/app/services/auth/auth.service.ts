@@ -1,50 +1,57 @@
 import { Injectable } from '@angular/core';
-import { account, client } from '../../../lib/appwrite';
-import { Databases, Query } from 'appwrite';
 import { environment } from "../../../environments/environment";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private databases: Databases;
+  public user: any;
+  public loading: boolean = true;
 
-  constructor() {
-    this.databases = new Databases(client);
+  constructor(
+    private firestore: AngularFirestore
+  ) { }
+
+  getUser() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.user = user;
+      }
+      this.loading = false;
+    });
   }
 
-  async isAuthenticated() {
-    try {
-      await this.getUser();
-      return true;
-    } catch (error) {
-      return false;
-    }
+  loginWithGoogle() {
+    return signInWithPopup(getAuth(), new GoogleAuthProvider());
   }
 
-  async getUser() {
-    return await account.get();
+  isAuthenticated(): boolean {
+    return getAuth() !== null;
   }
 
   async checkAndCreateUser() {
-    const user: any = await account.get();
-    try {
-      const response = await this.databases.listDocuments(environment.DATABASE_ID, environment.USERS_COLLETION, [Query.equal('$id', user.$id)]);
-      if (response.documents.length === 0) {
-        const data = {
-          name: user.name,
-          email: user.email
-        }
-
-        await this.databases.createDocument(environment.DATABASE_ID, environment.USERS_COLLETION, user.$id, data);
+    lastValueFrom(this.firestore.collection(environment.USERS_COLLETION).doc(this.user?.uid).get()).then(doc => {
+      if (!doc.exists) {
+        this.addUser(this.user);
       }
-    } catch (error) {
-      console.error('Error when verifying or creating the user: ', error);
+    });
+  }
+
+  addUser(user: any): Promise<void> {
+    const addUser = {
+      name: user?.displayName,
+      email: user?.email
     }
+
+    return this.firestore.collection(environment.USERS_COLLETION).doc(user.uid).set(addUser);
   }
 
   async logout() {
-    await account.deleteSession('current');
+    return signOut(getAuth());
   }
 }

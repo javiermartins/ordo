@@ -8,7 +8,7 @@
             Projects
             <ng-template>
                 <button iconStart="@tui.circle" tuiAsideItem tuiFade type="button" *ngFor="let project of projects"
-                    [routerLink]="['/', project.$id]">
+                    [routerLink]="['/', project.id]">
                     {{project.name}}
                 </button>
             </ng-template>
