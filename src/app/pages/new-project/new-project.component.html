@@ -4,6 +4,9 @@
             Project name
             <input tuiTextfieldLegacy />
         </tui-input>
+        <tui-textarea formControlName="description" class="mt-4 field-medium" [expandable]="true" [maxLength]="400">
+            Description
+        </tui-textarea>
         <div class="mt-4">
             <button size="m" tuiButton type="submit" appearance="whiteblock" [disabled]="projectForm.invalid || saving"
                 (click)="createNewProject()">

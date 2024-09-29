@@ -1,7 +1,7 @@
 <div cdkDropListGroup class="flex p-2">
-    <div class="flex" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="sections"
+    <div class="flex" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="project.sections"
         (cdkDropListDropped)="drop($event)">
-        @for (section of sections; track section) {
+        @for (section of project.sections; track section) {
         <div class="section-container" cdkDrag [cdkDragData]="section">
             <div class="pb-2 flex items-center" cdkDragHandle>
                 <tui-input [tuiTextfieldLabelOutside]="true" class="no-outline-input w-full mr-2" tuiTextfieldSize="m"
@@ -35,7 +35,7 @@
                 <div class="flex justify-center">
                     <button size="m" appearance="flat" tuiButton type="button" class="add-more-button"
                         (click)="addTask(section)">
-                        <tui-icon icon="@tui.plus" [style.font-size]="'20px'" /> Add more
+                        <tui-icon icon="@tui.plus" class="text-xl" /> Add more
                     </button>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <button size="m" appearance="flat" tuiButton tuiTitle type="button"
                     class="p-2 !text-[var(--color-text-weak)]" (click)="addSection()">
                     <span>
-                        <tui-icon icon="@tui.plus" [style.font-size]="'20px'" /> Add section
+                        <tui-icon icon="@tui.plus" class="text-xl" /> Add section
                     </span>
                 </button>
             </div>

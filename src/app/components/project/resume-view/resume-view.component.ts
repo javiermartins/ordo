@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TuiTextareaModule } from '@taiga-ui/legacy';
 import { debounceTime, Subject } from 'rxjs';
 import { ProjectsService } from '../../../services/projects/projects.service';
+import { Project } from '../../../models/project.model';
 
 @Component({
   selector: 'app-resume-view',
@@ -12,7 +13,7 @@ import { ProjectsService } from '../../../services/projects/projects.service';
   styleUrl: './resume-view.component.scss'
 })
 export class ResumeViewComponent implements OnInit {
-  @Input() project: any = null;
+  @Input() project: Project;
 
   public projectForm: FormGroup = new FormGroup('');
   private descriptionChangeSubject = new Subject<string>();

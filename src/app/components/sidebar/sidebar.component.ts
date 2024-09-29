@@ -5,6 +5,7 @@ import { TuiChevron, TuiDataListDropdownManager, TuiFade } from '@taiga-ui/kit';
 import { TuiNavigation } from '@taiga-ui/layout';
 import { ProjectsService } from '../../services/projects/projects.service';
 import { CommonModule } from '@angular/common';
+import { Project } from '../../models/project.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -27,7 +28,7 @@ import { CommonModule } from '@angular/common';
 export class SidebarComponent {
 
   protected expanded = true;
-  public projects: any[] = [];
+  public projects: Project[] = [];
 
   constructor(
     private projectsService: ProjectsService

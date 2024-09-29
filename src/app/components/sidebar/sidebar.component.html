@@ -18,9 +18,6 @@
         Add Project
     </button>
     <footer>
-        <button iconStart="@tui.star" tuiAsideItem type="button">
-            Favorites
-        </button>
         <button tuiAsideItem type="button" [iconStart]="expanded ? '@tui.chevron-left' : '@tui.chevron-right'"
             (click)="expanded = !expanded">
             {{ expanded ? 'Collapse' : 'Expand' }}

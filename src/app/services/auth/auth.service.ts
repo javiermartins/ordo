@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, User } from "firebase/auth";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { lastValueFrom } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { lastValueFrom } from 'rxjs';
 })
 export class AuthService {
 
-  public user: any;
+  public user: User;
   public loading: boolean = true;
 
   constructor(
@@ -42,7 +42,7 @@ export class AuthService {
     });
   }
 
-  addUser(user: any): Promise<void> {
+  addUser(user: User): Promise<void> {
     const addUser = {
       name: user?.displayName,
       email: user?.email

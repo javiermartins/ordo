@@ -9,6 +9,8 @@ import { TuiInputModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { FormsModule } from '@angular/forms';
 import { TuiDataListDropdownManager } from '@taiga-ui/kit';
 import { TuiLet } from '@taiga-ui/cdk';
+import { Project, Section, Task } from '../../../models/project.model';
+import { ProjectsService } from '../../../services/projects/projects.service';
 
 @Component({
   selector: 'app-board-view',
@@ -21,7 +23,7 @@ import { TuiLet } from '@taiga-ui/cdk';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardViewComponent implements AfterViewInit {
-  @Input() sections: any[] = [];
+  @Input() project: Project;
   @ViewChildren('taskContainer', { read: CdkDropList })
   public taskContainerLists: QueryList<CdkDropList> = new QueryList<CdkDropList>;
 
@@ -29,7 +31,10 @@ export class BoardViewComponent implements AfterViewInit {
   private readonly dialogs = inject(TuiDialogService);
   private readonly injector = inject(INJECTOR);
 
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(
+    private projectService: ProjectsService,
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngAfterViewInit(): void {
     this.taskContainerLists.changes.pipe(
@@ -47,7 +52,7 @@ export class BoardViewComponent implements AfterViewInit {
     return false;
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -59,42 +64,35 @@ export class BoardViewComponent implements AfterViewInit {
       );
     }
   }
-
   addSection() {
-    this.sections.push(
-      {
-        title: ''
-      }
-    );
-
+    this.projectService.addSection(this.project.id, {});
   }
 
-  deleteSection(deleteSection: any) {
-    this.sections = this.sections.filter((section: any) => section.id != deleteSection.id);
+  deleteSection(section: Section) {
+    this.projectService.deleteSection(this.project.id, section.id);
   }
 
-  addTask(section: any) {
-    section.tasks.push({ id: Math.random(), title: '' });
+  addTask(section: Section) {
+    const task = {};
+    this.projectService.addTask(this.project.id, section.id, task);
   }
 
-  openTask(section: any, task: any) {
+  openTask(section: Section, task: Task) {
     const dialogOptions: Partial<TuiDialogOptions<any>> = {
       appearance: 'task-detail-apperance',
       size: 'auto',
       closeable: false,
       dismissible: true,
       data: {
+        projectId: this.project.id,
+        sectionId: section.id,
         task: task
       }
     }
 
     this.dialogs
       .open(new PolymorpheusComponent(TaskDetailDialogComponent, this.injector), dialogOptions)
-      .subscribe({
-        complete: () => {
-
-        },
-      });
+      .subscribe();
   }
 
 }

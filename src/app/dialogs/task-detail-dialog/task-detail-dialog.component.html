@@ -1,10 +1,25 @@
 <div>
     <form [formGroup]="taskForm">
-        <tui-input formControlName="title" [tuiTextfieldLabelOutside]="true" class="no-outline-input">
-            <input tuiTextfieldLegacy />
-        </tui-input>
+        <div class="pb-2 flex items-center">
+            <tui-input formControlName="title" [tuiTextfieldLabelOutside]="true" class="w-full mr-2">
+                <input tuiTextfieldLegacy />
+            </tui-input>
 
-        <tui-textarea formControlName="description" class="field-medium" [expandable]="true" [maxLength]="400">
+            <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="m" tuiIconButton type="button"
+                class="options-button" [tuiDropdown]="taskOptions" [tuiDropdownOpen]="false">
+                Options
+            </button>
+            <ng-template #taskOptions>
+                <tui-data-list tuiDataListDropdownManager size="s">
+                    <button iconStart="@tui.trash" tuiOption type="button" class="!text-[var(--tui-text-negative)]"
+                        (click)="deleteTask()">
+                        Delete task
+                    </button>
+                </tui-data-list>
+            </ng-template>
+        </div>
+
+        <tui-textarea formControlName="description" class="field-medium mt-4" [expandable]="true" [maxLength]="400">
         </tui-textarea>
     </form>
 </div>

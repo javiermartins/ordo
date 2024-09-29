@@ -4,6 +4,7 @@ import { TuiCardMedium, TuiHeader } from '@taiga-ui/layout';
 import { ProjectsService } from '../../services/projects/projects.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Project } from '../../models/project.model';
 
 @Component({
     selector: 'app-dashboard',
@@ -14,7 +15,7 @@ import { RouterLink } from '@angular/router';
 })
 export class DashboardComponent {
 
-    public projects: any[] = [];
+    public projects: Project[];
 
     constructor(
         private projectsService: ProjectsService
