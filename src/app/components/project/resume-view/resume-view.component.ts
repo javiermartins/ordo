@@ -47,7 +47,7 @@ export class ResumeViewComponent implements OnInit {
 
   async onUpdateDescription(description: string) {
     try {
-      await this.projectsService.updateDescription(this.project.id, description);
+      await this.projectsService.updateProjectDescription(this.project.id, description);
     } catch (error) {
       console.error(error);
     }

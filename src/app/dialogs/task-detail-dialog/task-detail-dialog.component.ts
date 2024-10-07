@@ -9,6 +9,11 @@ import { TuiDataListDropdownManager } from '@taiga-ui/kit';
 import { TuiLet } from '@taiga-ui/cdk';
 import { ProjectsService } from '../../services/projects/projects.service';
 
+export class FormData {
+  title: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-task-detail-dialog',
   standalone: true,
@@ -25,6 +30,8 @@ export class TaskDetailDialogComponent {
 
   public task: Task = this.context?.data?.task;
   public taskForm: FormGroup = new FormGroup('');
+  private projectId: string = this.context?.data?.projectId;
+  private sectionId = this.context?.data?.sectionId;
 
   constructor(
     private projectsService: ProjectsService
@@ -32,20 +39,31 @@ export class TaskDetailDialogComponent {
 
   ngOnInit(): void {
     this.initForm();
+    this.onFormChange();
   }
 
   initForm() {
     this.taskForm = new FormGroup({
-      title: new FormControl(this.task.title),
-      description: new FormControl(this.task.description)
+      title: new FormControl(this.task.title || ''),
+      description: new FormControl(this.task.description || '')
     });
   }
 
-  deleteTask() {
-    const projectId = this.context?.data?.projectId;
-    const sectionId = this.context?.data?.sectionId;
+  onFormChange() {
+    this.taskForm.valueChanges.subscribe((formData) => {
+      this.updateTask(formData);
+    });
+  }
 
-    this.projectsService.deleteTask(projectId, sectionId, this.task.id).then(() => {
+  updateTask(formData: FormData) {
+    this.task.title = formData.title;
+    this.task.description = formData.description;
+
+    this.projectsService.updateTask(this.projectId, this.sectionId, this.task);
+  }
+
+  deleteTask() {
+    this.projectsService.deleteTask(this.projectId, this.sectionId, this.task.id).then(() => {
       this.context.completeWith();
     });
   }

@@ -1,4 +1,12 @@
 <div class="max-w-sm p-4">
+    <div class="flex items-center mb-2">
+        <span class="text-lg">{{projects?.length}} of {{MAX_PROJECTS}} projects</span>
+        @if(projects?.length == MAX_PROJECTS) {
+        <tui-icon icon="@tui.triangle-alert" class="text-2xl ml-2" tuiHintDirection="right"
+            tuiTooltip="Maximum number of projects reached" appearance="warning" />
+        }
+    </div>
+
     <form [formGroup]="projectForm">
         <tui-input formControlName="name">
             Project name
@@ -9,9 +17,10 @@
         </tui-textarea>
         <div class="mt-4">
             <button size="m" tuiButton type="submit" appearance="whiteblock" [disabled]="projectForm.invalid || saving"
-                (click)="createNewProject()">
+                (click)="submitProject()">
                 Submit
             </button>
         </div>
     </form>
 </div>
+<ngx-sonner-toaster richColors />

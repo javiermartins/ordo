@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { BehaviorSubject, combineLatest, map, mergeMap, of, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, lastValueFrom, map, mergeMap, of, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Project, Section, Task } from '../../models/project.model';
@@ -17,6 +17,13 @@ export class ProjectsService {
     private authService: AuthService,
     private afs: AngularFirestore
   ) { }
+
+  async getProjects() {
+    const user = this.authService.user;
+    return await lastValueFrom(this.afs.collection(environment.PROJECTS_COLLECTION, ref => ref.where('ownerId', '==', user?.uid)).get()).then((res) => {
+      return res.docs.map(d => d.data());
+    });
+  }
 
   loadProjects() {
     const user = this.authService.user;
@@ -89,20 +96,28 @@ export class ProjectsService {
     return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}`).delete();
   }
 
-  async updateDescription(projectId: string, newDescription: string) {
+  updateProjectDescription(projectId: string, newDescription: string) {
     this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}`).update({ description: newDescription });
   }
 
-  addSection(projectId: string, section: Section | {}) {
+  addSection(projectId: string, section: {}) {
     return this.afs.collection(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}`).add(section);
+  }
+
+  updateSection(projectId: string, section: Section) {
+    return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${section.id}`).update(section);
   }
 
   deleteSection(projectId: string, sectionId: string) {
     return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${sectionId}`).delete();
   }
 
-  addTask(projectId: string, sectionId: string, task: Task | {}) {
+  addTask(projectId: string, sectionId: string, task: {}) {
     return this.afs.collection(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${sectionId}/${environment.TASKS_COLLECTION}`).add(task);
+  }
+
+  updateTask(projectId: string, sectionId: string, task: Task) {
+    return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${sectionId}/${environment.TASKS_COLLECTION}/${task.id}`).update(task);
   }
 
   deleteTask(projectId: string, sectionId: string, taskId: string) {

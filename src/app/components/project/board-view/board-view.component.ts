@@ -68,6 +68,10 @@ export class BoardViewComponent implements AfterViewInit {
     this.projectService.addSection(this.project.id, {});
   }
 
+  updateSectionTitle(section: Section) {
+    this.projectService.updateSection(this.project.id, section);
+  }
+
   deleteSection(section: Section) {
     this.projectService.deleteSection(this.project.id, section.id);
   }
