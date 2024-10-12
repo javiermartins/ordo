@@ -6,13 +6,15 @@ import { ResumeViewComponent } from '../../components/project/resume-view/resume
 import { TuiButton, TuiDataList, TuiDropdown, TuiIcon, TuiLoader } from '@taiga-ui/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectsService } from '../../services/projects/projects.service';
+import { TuiInputModule } from '@taiga-ui/legacy';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-project',
   standalone: true,
   imports: [TuiHeader, TuiTabs, BoardViewComponent, ResumeViewComponent,
     TuiDropdown, TuiDataList, TuiDataListDropdownManager, TuiIcon, TuiButton,
-    TuiLoader
+    TuiLoader, TuiInputModule, FormsModule
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
@@ -55,6 +57,10 @@ export class ProjectComponent implements OnInit {
     }).catch((error: Error) => {
       console.error(error);
     });
+  }
+
+  updateProjectTitle() {
+    this.projectsService.updateProject(this.project);
   }
 
 }

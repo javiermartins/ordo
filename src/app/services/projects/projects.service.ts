@@ -55,6 +55,8 @@ export class ProjectsService {
               const data = a.payload.doc.data();
               const id = a.payload.doc.id;
               return { id, ...data as {} };
+            }).sort((a: any, b: any) => {
+              return a.order - b.order;
             })
           )
         );
@@ -73,6 +75,9 @@ export class ProjectsService {
                       const taskId = taskAction.payload.doc.id;
                       return { id: taskId, ...taskData as {} };
                     });
+
+                    tasks.sort((a: any, b: any) => a.order - b.order);
+
                     return { ...section, tasks };
                   })
                 )
@@ -96,8 +101,9 @@ export class ProjectsService {
     return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}`).delete();
   }
 
-  updateProjectDescription(projectId: string, newDescription: string) {
-    this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}`).update({ description: newDescription });
+  updateProject(project: Project) {
+    const { id, sections, ...updateData } = project;
+    this.afs.doc(`${environment.PROJECTS_COLLECTION}/${id}`).update(updateData);
   }
 
   addSection(projectId: string, section: {}) {

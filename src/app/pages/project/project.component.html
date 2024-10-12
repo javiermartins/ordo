@@ -1,8 +1,10 @@
 @if(project) {
 <div class="flex flex-col w-max min-w-full">
     <div class="bg-white">
-        <div tuiHeader="s" class="p-4">
-            <h2 tuiTitle class="mb-2">{{project.name}}</h2>
+        <div class="flex items-center px-4 py-1">
+            <tui-input class="no-outline-input w-full mb-2" [(ngModel)]="project.name">
+                <input tuiTextfieldLegacy class="project-title" (input)="updateProjectTitle()" />
+            </tui-input>
             <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
                 class="options-button" [tuiDropdown]="sectionOptions" [tuiDropdownOpen]="false">
                 Options

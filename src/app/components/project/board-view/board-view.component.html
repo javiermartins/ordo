@@ -1,6 +1,6 @@
 <div cdkDropListGroup class="flex p-2">
     <div class="flex" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="project.sections"
-        (cdkDropListDropped)="drop($event)">
+        (cdkDropListDropped)="dropSection($event)">
         @for (section of project.sections; track section.id) {
         <div class="section-container" cdkDrag [cdkDragData]="section">
             <div class="pb-2 flex items-center" cdkDragHandle>
@@ -24,9 +24,9 @@
 
             <div class="section-list">
                 <div cdkDropList #taskContainer id="{{section.id}}" [cdkDropListData]="section.tasks"
-                    (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="isTaskPredicate"
+                    (cdkDropListDropped)="dropTask($event)" [cdkDropListEnterPredicate]="isTaskPredicate"
                     [cdkDropListConnectedTo]="taskContainers" class="min-h-20">
-                    @for (task of section.tasks; track task) {
+                    @for (task of section.tasks; track task.id) {
                     <div class="card-board" cdkDrag [cdkDragData]="task" (click)="openTask(section, task)">
                         {{task.title}}
                     </div>

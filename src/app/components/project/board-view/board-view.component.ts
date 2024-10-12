@@ -11,6 +11,8 @@ import { TuiDataListDropdownManager } from '@taiga-ui/kit';
 import { TuiLet } from '@taiga-ui/cdk';
 import { Project, Section, Task } from '../../../models/project.model';
 import { ProjectsService } from '../../../services/projects/projects.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-board-view',
@@ -33,7 +35,8 @@ export class BoardViewComponent implements AfterViewInit {
 
   constructor(
     private projectService: ProjectsService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private firestore: AngularFirestore
   ) { }
 
   ngAfterViewInit(): void {
@@ -52,20 +55,70 @@ export class BoardViewComponent implements AfterViewInit {
     return false;
   }
 
-  drop(event: CdkDragDrop<any[]>) {
+  dropSection(event: CdkDragDrop<Section[]>) {
+    this.transferArrayItem(event);
+    this.updateSectionOrder(event.container.data);
+  }
+
+  updateSectionOrder(items: Section[]): void {
+    const batch = this.firestore.firestore.batch();
+
+    items.forEach((item, index) => {
+      const { id, tasks, ...sectionData } = item;
+      const docRef = this.firestore.collection(`${environment.PROJECTS_COLLECTION}/${this.project.id}/${environment.SECTIONS_COLLECTION}`).doc(id).ref;
+      batch.set(docRef, { ...sectionData, order: index });
+    });
+
+    batch.commit().then();
+  }
+
+  updateTaskOrder(containerId: string, items: Task[]): void {
+    const batch = this.firestore.firestore.batch();
+
+    items.forEach((item, index) => {
+      const { id, ...taskData } = item;
+      const docRef = this.firestore.collection(`${environment.PROJECTS_COLLECTION}/${this.project.id}/${environment.SECTIONS_COLLECTION}/${containerId}/${environment.TASKS_COLLECTION}`).doc(id).ref;
+      batch.set(docRef, { ...taskData, order: index });
+    });
+
+    batch.commit().then();
+  }
+
+  dropTask(event: CdkDragDrop<Task[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      this.updateTaskOrder(event.container.id, event.container.data);
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      this.transferTask(event);
     }
   }
+
+  transferTask(event: any) {
+    const taskToTransfer = event.previousContainer.data[event.previousIndex];
+
+    this.transferArrayItem(event);
+
+    this.updateTaskOrder(event.previousContainer.id, event.previousContainer.data);
+    this.updateTaskOrder(event.container.id, event.container.data);
+
+    this.deleteTask(event.previousContainer.id, taskToTransfer.id);
+  }
+
+  transferArrayItem(event: any) {
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex,
+    );
+  }
+
   addSection() {
-    this.projectService.addSection(this.project.id, {});
+    const maxOrder = this.project.sections.reduce((max, section) => Math.max(max, section.order || 0), 0);
+    const section = {
+      order: maxOrder + 1
+    }
+    this.projectService.addSection(this.project.id, section);
   }
 
   updateSectionTitle(section: Section) {
@@ -76,8 +129,15 @@ export class BoardViewComponent implements AfterViewInit {
     this.projectService.deleteSection(this.project.id, section.id);
   }
 
+  deleteTask(sectionId: string, taskId: string) {
+    this.projectService.deleteTask(this.project.id, sectionId, taskId).then();
+  }
+
   addTask(section: Section) {
-    const task = {};
+    const maxOrder = section.tasks.reduce((max, task) => Math.max(max, task.order || 0), 0);
+    const task = {
+      order: maxOrder + 1
+    };
     this.projectService.addTask(this.project.id, section.id, task);
   }
 

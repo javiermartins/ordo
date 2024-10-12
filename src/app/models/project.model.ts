@@ -9,6 +9,7 @@ export interface Project {
 export interface Section {
     id?: string;
     title: string;
+    order?: number;
     tasks?: Task[];
 }
 export interface Task {
@@ -16,4 +17,5 @@ export interface Task {
     title: string;
     description?: string;
     completed: boolean;
+    order?: number;
 }
