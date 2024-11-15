@@ -114,8 +114,21 @@ export class ProjectsService {
     return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${section.id}`).update(section);
   }
 
-  deleteSection(projectId: string, sectionId: string) {
-    return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${sectionId}`).delete();
+  async deleteSection(projectId: string, sectionId: string): Promise<any> {
+    const sectionDocPath = `${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${sectionId}`;
+    const tasksCollectionPath = `${sectionDocPath}/tasks`;
+
+    return lastValueFrom(this.afs
+      .collection(tasksCollectionPath)
+      .get()).then(snapshot => {
+        const deleteTasksPromises = snapshot.docs.map(doc =>
+          this.afs.doc(`${tasksCollectionPath}/${doc.id}`).delete()
+        );
+        return Promise.all(deleteTasksPromises);
+      })
+      .then(() => {
+        return this.afs.doc(sectionDocPath).delete();
+      });
   }
 
   addTask(projectId: string, sectionId: string, task: {}) {
