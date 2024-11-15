@@ -4,10 +4,8 @@
         @for (section of project.sections; track section.id) {
         <div class="section-container" cdkDrag [cdkDragData]="section">
             <div class="pb-2 flex items-center" cdkDragHandle>
-                <tui-input [tuiTextfieldLabelOutside]="true" class="no-outline-input w-full mr-2" tuiTextfieldSize="m"
-                    [(ngModel)]="section.title">
-                    <input tuiTextfieldLegacy class="section-title" (input)="updateSectionTitle(section)" />
-                </tui-input>
+                <input #sectionInput class="section-title w-full mr-2" [(ngModel)]="section.title"
+                    [attr.id]="section.id" (input)="updateSectionTitle(section)" />
                 <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
                     class="options-button" [tuiDropdown]="sectionOptions" [tuiDropdownOpen]="false">
                     Options

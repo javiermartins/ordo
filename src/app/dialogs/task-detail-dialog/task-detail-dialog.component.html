@@ -1,12 +1,12 @@
 <div>
     <form [formGroup]="taskForm">
         <div class="pb-2 flex items-center">
-            <tui-input formControlName="title" [tuiTextfieldLabelOutside]="true" class="w-full mr-2">
+            <tui-input formControlName="title" [tuiTextfieldLabelOutside]="true" class="w-full mr-2 no-shadow-input">
                 <input tuiTextfieldLegacy />
             </tui-input>
 
             <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="m" tuiIconButton type="button"
-                class="options-button" [tuiDropdown]="taskOptions" [tuiDropdownOpen]="false">
+                class="options-button " [tuiDropdown]="taskOptions" [tuiDropdownOpen]="false">
                 Options
             </button>
             <ng-template #taskOptions>
@@ -19,7 +19,8 @@
             </ng-template>
         </div>
 
-        <tui-textarea formControlName="description" class="field-medium mt-4" [expandable]="true" [maxLength]="400">
+        <tui-textarea formControlName="description" class="field-medium mt-4 no-shadow-input" [expandable]="true"
+            [maxLength]="400">
         </tui-textarea>
     </form>
 </div>

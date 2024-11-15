@@ -2,9 +2,7 @@
 <div class="flex flex-col w-max min-w-full">
     <div class="bg-white">
         <div class="flex items-center px-4 py-1">
-            <tui-input class="no-outline-input w-full mb-2" [(ngModel)]="project.name">
-                <input tuiTextfieldLegacy class="project-title" (input)="updateProjectTitle()" />
-            </tui-input>
+            <input [(ngModel)]="project.name" class="project-title w-full my-2" (input)="updateProjectTitle()" />
             <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
                 class="options-button" [tuiDropdown]="sectionOptions" [tuiDropdownOpen]="false">
                 Options

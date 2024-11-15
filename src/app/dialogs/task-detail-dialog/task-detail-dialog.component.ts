@@ -17,8 +17,8 @@ export class FormData {
 @Component({
   selector: 'app-task-detail-dialog',
   standalone: true,
-  imports: [ReactiveFormsModule, TuiInputModule, TuiTextfieldControllerModule, TuiButton, TuiIcon,
-    TuiDropdown, TuiTextareaModule, TuiDataList, TuiLet, TuiDataListDropdownManager],
+  imports: [ReactiveFormsModule, TuiInputModule, TuiTextfieldControllerModule, TuiButton,
+    TuiDropdown, TuiTextareaModule, TuiDataList, TuiDataListDropdownManager],
   templateUrl: './task-detail-dialog.component.html',
   styleUrl: './task-detail-dialog.component.scss',
   encapsulation: ViewEncapsulation.None,

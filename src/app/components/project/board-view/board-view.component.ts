@@ -8,7 +8,6 @@ import { TaskDetailDialogComponent } from '../../../dialogs/task-detail-dialog/t
 import { TuiInputModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { FormsModule } from '@angular/forms';
 import { TuiDataListDropdownManager } from '@taiga-ui/kit';
-import { TuiLet } from '@taiga-ui/cdk';
 import { Project, Section, Task } from '../../../models/project.model';
 import { ProjectsService } from '../../../services/projects/projects.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -18,7 +17,7 @@ import { environment } from '../../../../environments/environment';
   selector: 'app-board-view',
   standalone: true,
   imports: [FormsModule, DragDropModule, TuiHeader, TuiIcon, TuiButton, TuiInputModule,
-    TuiTextfieldControllerModule, TuiDropdown, TuiDataList, TuiDataListDropdownManager, TuiLet],
+    TuiTextfieldControllerModule, TuiDropdown, TuiDataList, TuiDataListDropdownManager],
   templateUrl: './board-view.component.html',
   styleUrl: './board-view.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -32,6 +31,7 @@ export class BoardViewComponent implements AfterViewInit {
   public taskContainers: CdkDropList[] = [];
   private readonly dialogs = inject(TuiDialogService);
   private readonly injector = inject(INJECTOR);
+  public sectionToFocusId: string = null;
 
   constructor(
     private projectService: ProjectsService,
@@ -117,8 +117,20 @@ export class BoardViewComponent implements AfterViewInit {
     const maxOrder = this.project.sections.reduce((max, section) => Math.max(max, section.order || 0), 0);
     const section = {
       order: maxOrder + 1
-    }
-    this.projectService.addSection(this.project.id, section);
+    };
+    this.projectService.addSection(this.project.id, section).then((section) => {
+      this.focusInput(section);
+    });
+  }
+
+  focusInput(section: any) {
+    this.sectionToFocusId = section.id;
+    setTimeout(() => {
+      const inputElement = document.getElementById(section.id);
+      if (inputElement) {
+        inputElement.focus();
+      }
+    }, 100);
   }
 
   updateSectionTitle(section: Section) {

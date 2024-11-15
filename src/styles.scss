@@ -17,6 +17,14 @@
     }
 }
 
+.no-shadow-input {
+
+    [tuiWrapper],
+    [tuiWrapper]:hover:not(._no-hover) {
+        box-shadow: none;
+    }
+}
+
 .no-outline-input:focus-visible {
     outline: none;
 }
