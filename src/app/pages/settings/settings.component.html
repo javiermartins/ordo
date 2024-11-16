@@ -1,0 +1,26 @@
+@if (user) {
+<div class="settings-container">
+    <form [formGroup]="urlForm" class="card-container">
+        <div>
+            <label tuiLabel>
+                <span class="label-text">Name</span>
+                <tui-input formControlName="userName" class="w-full no-shadow-input" tuiTextfieldSize="m"
+                    [tuiTextfieldLabelOutside]="true">
+                    <input tuiTextfieldLegacy />
+                </tui-input>
+            </label>
+        </div>
+
+        <div class="mt-4">
+            <label tuiLabel>
+                <span class="label-text">Email</span>
+                <tui-input formControlName="email" class="w-full no-shadow-input" tuiTextfieldSize="m"
+                    [tuiTextfieldLabelOutside]="true">
+                    <input tuiTextfieldLegacy />
+                </tui-input>
+            </label>
+        </div>
+
+    </form>
+</div>
+}

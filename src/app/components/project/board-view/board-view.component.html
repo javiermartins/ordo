@@ -1,11 +1,12 @@
 <div cdkDropListGroup class="flex p-2">
-    <div class="flex" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="project.sections"
-        (cdkDropListDropped)="dropSection($event)">
+    <div class="flex" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListDisabled]="isAnyInputActive"
+        [cdkDropListData]="project.sections" (cdkDropListDropped)="dropSection($event)">
         @for (section of project.sections; track section.id) {
         <div class="section-container" cdkDrag [cdkDragData]="section">
             <div class="pb-2 flex items-center" cdkDragHandle>
                 <input #sectionInput class="section-title w-full mr-2" [(ngModel)]="section.title"
-                    [attr.id]="section.id" (input)="updateSectionTitle(section)" />
+                    [attr.id]="section.id" (input)="updateSectionTitle(section)" (focus)="onInputFocus()"
+                    (blur)="onInputBlur()" />
                 <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
                     class="options-button" [tuiDropdown]="sectionOptions" [tuiDropdownOpen]="false">
                     Options

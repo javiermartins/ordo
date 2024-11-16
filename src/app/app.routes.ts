@@ -7,6 +7,7 @@ import { loginGuard } from './guards/login/login.guard';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NewProjectComponent } from './pages/new-project/new-project.component';
 import { ProjectComponent } from './pages/project/project.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '', pathMatch: 'full' },
@@ -20,7 +21,8 @@ export const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
             { path: 'new-project', component: NewProjectComponent },
-            { path: ':projectId', component: ProjectComponent },
+            { path: 'settings', component: SettingsComponent },
+            { path: ':projectId', component: ProjectComponent }
         ],
     }
 ];

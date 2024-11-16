@@ -29,9 +29,10 @@ export class BoardViewComponent implements AfterViewInit {
   public taskContainerLists: QueryList<CdkDropList> = new QueryList<CdkDropList>;
 
   public taskContainers: CdkDropList[] = [];
+  public sectionToFocusId: string = null;
+  public isAnyInputActive: boolean = false;
   private readonly dialogs = inject(TuiDialogService);
   private readonly injector = inject(INJECTOR);
-  public sectionToFocusId: string = null;
 
   constructor(
     private projectService: ProjectsService,
@@ -169,6 +170,14 @@ export class BoardViewComponent implements AfterViewInit {
     this.dialogs
       .open(new PolymorpheusComponent(TaskDetailDialogComponent, this.injector), dialogOptions)
       .subscribe();
+  }
+
+  onInputFocus() {
+    this.isAnyInputActive = true;
+  }
+
+  onInputBlur() {
+    this.isAnyInputActive = false;
   }
 
 }

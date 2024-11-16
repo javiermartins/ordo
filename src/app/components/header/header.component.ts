@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { TuiAppearance, TuiButton, TuiDataList, TuiDropdown, TuiIcon } from '@taiga-ui/core';
+import { Router, RouterLink } from '@angular/router';
+import { TuiAppearance, TuiDataList, TuiDropdown, TuiIcon } from '@taiga-ui/core';
 import { TuiAvatar } from '@taiga-ui/kit';
-import { TuiHeader, TuiNavigation } from '@taiga-ui/layout';
+import { TuiNavigation } from '@taiga-ui/layout';
 import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
+    RouterLink,
     TuiAppearance,
     TuiAvatar,
-    TuiButton,
-    TuiHeader,
     TuiIcon,
     TuiNavigation,
     TuiDataList,
@@ -31,6 +30,10 @@ export class HeaderComponent {
 
   async logout() {
     await this.authService.logout().then(() => this.router.navigate(['/login']));
+  }
+
+  closeMenu() {
+    this.openMenu = false;
   }
 
 }

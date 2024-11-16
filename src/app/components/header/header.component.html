@@ -9,7 +9,13 @@
     <ng-template #content>
         <tui-data-list>
             <tui-opt-group>
-                <button tuiOption type="button" (click)="logout()">
+                <button tuiOption type="button" class="!justify-start" (click)="closeMenu()"
+                    [routerLink]="['settings']">
+                    <tui-icon icon="@tui.settings" class="text-lg mr-2" />
+                    Settings
+                </button>
+                <button tuiOption type="button" class="!justify-start" (click)="logout()">
+                    <tui-icon icon="@tui.log-out" class="text-lg mr-2" />
                     Logout
                 </button>
             </tui-opt-group>
