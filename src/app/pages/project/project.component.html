@@ -1,5 +1,5 @@
 @if(project) {
-<div class="flex flex-col w-max min-w-full">
+<div class="flex flex-col w-full h-[calc(100vh-48px)] overflow-hidden">
     <div class="bg-white">
         <div class="flex items-center px-4 py-1">
             <input [(ngModel)]="project.name" class="project-title w-full my-2" (input)="updateProjectTitle()" />
@@ -21,19 +21,19 @@
             <button iconStart="@tui.clipboard-minus" tuiTab type="button">
                 Resume
             </button>
-            <button disabled iconStart="@tui.list" tuiTab type="button">
-                List
-            </button>
+            <!-- <button disabled iconStart="@tui.list" tuiTab type="button">
+                    List
+                </button> -->
             <button iconStart="@tui.table" tuiTab type="button">
                 Board
             </button>
         </tui-tabs>
     </div>
 
-    <div>
+    <div class="flex-1 overflow-auto">
         @if (activetab === 0) {
         <app-resume-view [project]="project"></app-resume-view>
-        } @else if (activetab === 2) {
+        } @else if (activetab === 1) {
         <app-board-view [project]="project"></app-board-view>
         }
     </div>

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TuiHeader } from '@taiga-ui/layout';
 import { BoardViewComponent } from '../../components/project/board-view/board-view.component';
 import { TuiDataListDropdownManager, TuiTabs } from '@taiga-ui/kit';
 import { ResumeViewComponent } from '../../components/project/resume-view/resume-view.component';
-import { TuiButton, TuiDataList, TuiDropdown, TuiIcon, TuiLoader } from '@taiga-ui/core';
+import { TuiButton, TuiDataList, TuiDropdown, TuiLoader } from '@taiga-ui/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectsService } from '../../services/projects/projects.service';
 import { TuiInputModule } from '@taiga-ui/legacy';
@@ -12,15 +11,15 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [TuiHeader, TuiTabs, BoardViewComponent, ResumeViewComponent,
-    TuiDropdown, TuiDataList, TuiDataListDropdownManager, TuiIcon, TuiButton,
+  imports: [TuiTabs, BoardViewComponent, ResumeViewComponent,
+    TuiDropdown, TuiDataList, TuiDataListDropdownManager, TuiButton,
     TuiLoader, TuiInputModule, FormsModule
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
 })
 export class ProjectComponent implements OnInit {
-  protected activetab = 2;
+  protected activetab = 1;
 
   public project: any;
   private projectId: string = '';

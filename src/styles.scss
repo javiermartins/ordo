@@ -3,6 +3,25 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2e2e2ee0;
+    border-radius: 8px;
+    border: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #2e2e2ed1;
+}
+
 .no-outline-input {
 
     [tuiWrapper],

@@ -10,6 +10,7 @@ tui-loader {
     transition: border-color 0.6s ease;
     border-radius: 8px;
     margin-right: 5px;
+    text-overflow: ellipsis;
 }
 
 .project-title:hover {
