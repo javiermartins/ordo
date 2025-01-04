@@ -2,8 +2,7 @@ header[tuiNavigationHeader] {
     border-bottom: 1px solid var(--tui-border-normal);
 }
 
-header[tuiNavigationHeader]:before,
-header[tuiNavigationHeader]:after {
+header[tuiNavigationHeader][tuiNavigationHeader]:before {
     content: none;
 }
 
