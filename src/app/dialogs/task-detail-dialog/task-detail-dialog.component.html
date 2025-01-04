@@ -1,11 +1,16 @@
 <div>
     <form [formGroup]="taskForm">
         <div class="pb-2 flex items-center">
-            <tui-input formControlName="title" [tuiTextfieldLabelOutside]="true" class="w-full mr-2 no-shadow-input">
-                <input tuiTextfieldLegacy />
+            <div class="wrapper flex">
+                <input tuiCheckbox type="checkbox" formControlName="completed" class="!rounded-full" />
+            </div>
+
+            <tui-input formControlName="title" tuiTextfieldSize="m" [tuiTextfieldLabelOutside]="true"
+                class="w-full mr-2 no-outline-input">
+                <input tuiTextfieldLegacy class="!text-xl !font-semibold !px-2" />
             </tui-input>
 
-            <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="m" tuiIconButton type="button"
+            <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
                 class="options-button " [tuiDropdown]="taskOptions" [tuiDropdownOpen]="false">
                 Options
             </button>
@@ -19,8 +24,25 @@
             </ng-template>
         </div>
 
-        <tui-textarea formControlName="description" class="field-medium mt-4 no-shadow-input" [expandable]="true"
-            [maxLength]="400">
-        </tui-textarea>
+        <div class="py-2">
+            <div class="flex items-center">
+                <span class="badge">
+                    <tui-icon icon="@tui.calendar" class="size-4"></tui-icon>
+                    {{task.createdDate * 1000 | date: 'd MMM' }}
+                </span>
+            </div>
+
+            <hr class="mt-3" />
+
+            <label tuiLabel class="mt-4">
+                <div>
+                    <tui-icon icon="@tui.message-square" class="size-5 text-[var(--color-text-weak)] mr-1" />
+                    <span class="text-[var(--color-text-weak)] font-medium">Description</span>
+                </div>
+                <tui-textarea formControlName="description" class="field-medium no-shadow-input mt-1"
+                    [expandable]="true" [maxLength]="400">
+                </tui-textarea>
+            </label>
+        </div>
     </form>
 </div>

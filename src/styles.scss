@@ -22,6 +22,10 @@
     background-color: #2e2e2ed1;
 }
 
+[tuiAppearance][data-appearance=primary] {
+    background: var(--success-color);
+}
+
 .options-button {
     color: var(--color-text-weak) !important;
 }
@@ -35,8 +39,7 @@
     }
 
     [tuiWrapper]::after {
-        border: none;
-        color: transparent;
+        content: none;
     }
 }
 
@@ -48,6 +51,28 @@
     }
 }
 
-.no-outline-input:focus-visible {
-    outline: none;
+.no-outline-input:hover,
+.no-outline-input:focus-within {
+    [tuiWrapper]::after {
+        content: '';
+    }
+}
+
+.t-box {
+    border-block-start: 0.5rem solid transparent !important;
+
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 1px 10px;
+    border-radius: 50px;
+
+    tui-icon {
+        margin-right: 8px;
+    }
 }

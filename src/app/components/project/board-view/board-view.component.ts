@@ -7,17 +7,20 @@ import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { TaskDetailDialogComponent } from '../../../dialogs/task-detail-dialog/task-detail-dialog.component';
 import { TuiInputModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { FormsModule } from '@angular/forms';
-import { TuiDataListDropdownManager } from '@taiga-ui/kit';
+import { TuiCheckbox, TuiDataListDropdownManager } from '@taiga-ui/kit';
 import { Project, Section, Task } from '../../../models/project.model';
 import { ProjectsService } from '../../../services/projects/projects.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from '../../../../environments/environment';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-board-view',
   standalone: true,
   imports: [FormsModule, DragDropModule, TuiHeader, TuiIcon, TuiButton, TuiInputModule,
-    TuiTextfieldControllerModule, TuiDropdown, TuiDataList, TuiDataListDropdownManager],
+    TuiTextfieldControllerModule, TuiDropdown, TuiDataList, TuiDataListDropdownManager,
+    TuiCheckbox, CommonModule
+  ],
   templateUrl: './board-view.component.html',
   styleUrl: './board-view.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -138,6 +141,12 @@ export class BoardViewComponent implements AfterViewInit {
     this.projectService.updateSection(this.project.id, section);
   }
 
+  taskCompleted(event: Event, section: Section, task: Task) {
+    event.stopPropagation();
+    task.completed = !task.completed;
+    this.projectService.updateTask(this.project.id, section.id, task);
+  }
+
   deleteSection(section: Section) {
     this.projectService.deleteSection(this.project.id, section.id);
   }
@@ -149,7 +158,9 @@ export class BoardViewComponent implements AfterViewInit {
   addTask(section: Section) {
     const maxOrder = section.tasks.reduce((max, task) => Math.max(max, task.order || 0), 0);
     const task = {
-      order: maxOrder + 1
+      order: maxOrder + 1,
+      completed: false,
+      createdDate: new Date()
     };
     this.projectService.addTask(this.project.id, section.id, task);
   }

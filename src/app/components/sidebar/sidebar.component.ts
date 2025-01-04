@@ -45,4 +45,8 @@ export class SidebarComponent {
     });
   }
 
+  noCloseProjects(event: Event) {
+    event.stopPropagation();
+  }
+
 }

@@ -1,24 +1,27 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TuiButton, TuiDataList, TuiDialogContext, TuiDropdown, TuiIcon } from '@taiga-ui/core';
-import { TuiInputModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
+import { TuiButton, TuiDataList, TuiDialogContext, TuiDropdown, TuiIcon, TuiLabel } from '@taiga-ui/core';
+import { TuiCheckbox, TuiDataListDropdownManager } from '@taiga-ui/kit';
+import { TuiInputModule, TuiTextareaModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { injectContext } from '@taiga-ui/polymorpheus';
-import { TuiTextareaModule } from '@taiga-ui/legacy';
 import { Task } from '../../models/project.model';
-import { TuiDataListDropdownManager } from '@taiga-ui/kit';
-import { TuiLet } from '@taiga-ui/cdk';
 import { ProjectsService } from '../../services/projects/projects.service';
+import { DatePipe } from '@angular/common';
 
 export class FormData {
   title: string;
   description: string;
+  completed: boolean;
 }
 
 @Component({
   selector: 'app-task-detail-dialog',
   standalone: true,
-  imports: [ReactiveFormsModule, TuiInputModule, TuiTextfieldControllerModule, TuiButton,
-    TuiDropdown, TuiTextareaModule, TuiDataList, TuiDataListDropdownManager],
+  imports: [
+    ReactiveFormsModule, TuiInputModule, TuiTextfieldControllerModule, TuiButton,
+    TuiDropdown, TuiTextareaModule, TuiDataList, TuiDataListDropdownManager, TuiCheckbox, TuiLabel, TuiIcon,
+    DatePipe
+  ],
   templateUrl: './task-detail-dialog.component.html',
   styleUrl: './task-detail-dialog.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -44,6 +47,7 @@ export class TaskDetailDialogComponent {
 
   initForm() {
     this.taskForm = new FormGroup({
+      completed: new FormControl(this.task.completed || false),
       title: new FormControl(this.task.title || ''),
       description: new FormControl(this.task.description || '')
     });
@@ -58,6 +62,7 @@ export class TaskDetailDialogComponent {
   updateTask(formData: FormData) {
     this.task.title = formData.title;
     this.task.description = formData.description;
+    this.task.completed = formData.completed;
 
     this.projectsService.updateTask(this.projectId, this.sectionId, this.task);
   }

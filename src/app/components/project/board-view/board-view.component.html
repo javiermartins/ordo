@@ -27,7 +27,12 @@
                     [cdkDropListConnectedTo]="taskContainers" class="min-h-20">
                     @for (task of section.tasks; track task.id) {
                     <div class="card-board" cdkDrag [cdkDragData]="task" (click)="openTask(section, task)">
-                        {{task.title}}
+                        <div class="card-title">
+                            <input tuiCheckbox type="checkbox" [(ngModel)]="task.completed"
+                                class="!size-5 !rounded-full align-middle !mr-1 !my-[2px]"
+                                (click)="taskCompleted($event, section, task)" />
+                            <span [ngClass]="{'completed-task': task.completed}">{{task.title}}</span>
+                        </div>
                     </div>
                     }
                 </div>
