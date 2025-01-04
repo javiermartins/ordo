@@ -1,8 +1,8 @@
 export const environment = {
-    API_ENDPOINT: '',
-    PROJECT_ID: '',
-    DATABASE_ID: '',
+    firebaseConfig: import.meta.env.ORDO_FIREBASE_CONF,
 
-    USERS_COLLETION: '',
-    PROJECTS_COLLECTION: ''
+    USERS_COLLETION: import.meta.env.ORDO_USERS_COLLETION,
+    PROJECTS_COLLECTION: import.meta.env.ORDO_PROJECTS_COLLECTION,
+    SECTIONS_COLLECTION: import.meta.env.ORDO_SECTIONS_COLLECTION,
+    TASKS_COLLECTION: import.meta.env.ORDO_TASKS_COLLECTION
 };
