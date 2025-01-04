@@ -3,12 +3,12 @@
         Dashboard
     </a>
     <hr />
-    <tui-aside-group>
+    <tui-aside-group [open]="true">
         <button iconStart="@tui.settings" tuiAsideItem tuiChevron type="button">
             Projects
             <ng-template>
                 <button iconStart="@tui.circle" tuiAsideItem tuiFade type="button" *ngFor="let project of projects"
-                    [routerLink]="['/', project.id]" (click)="noCloseProjects($event)">
+                    [routerLink]="['/', project.id]">
                     {{project.name}}
                 </button>
             </ng-template>

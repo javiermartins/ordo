@@ -1,0 +1,16 @@
+<div>
+    <h2 class="text-2xl font-semibold">{{ context.data.header}}</h2>
+    <p class="text-base mt-4">
+        {{ context.data.description}}
+    </p>
+
+    <div class="mt-4 text-right">
+        <button appearance="whiteblock" tuiButton type="button" size="m" class="mr-2" (click)="cancel()">
+            Cancel
+        </button>
+        <button appearance="whiteblock" tuiButton type="button" size="m" class="!bg-[#dc3545f0] !text-white"
+            (click)="delete()">
+            Delete
+        </button>
+    </div>
+</div>

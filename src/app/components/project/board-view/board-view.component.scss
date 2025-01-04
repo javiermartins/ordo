@@ -57,15 +57,6 @@
     color: #6d6e6fd3;
 }
 
-.card-border {
-    width: 98%;
-    margin: 5px auto 0 auto;
-}
-
-.card-footer {
-    padding: 5px 12px;
-}
-
 .cdk-drag-preview {
     box-sizing: border-box;
     border-radius: 4px;
@@ -102,8 +93,4 @@ tui-dialog[data-appearance='task-detail-apperance'] {
     background: white;
     min-width: 500px;
     border-radius: 15px 0 0 15px
-}
-
-tui-dialogs .t-overlay {
-    opacity: 0 !important;
 }

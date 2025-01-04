@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { TuiDataList, TuiDropdown, TuiIcon } from '@taiga-ui/core';
-import { TuiChevron, TuiDataListDropdownManager, TuiFade } from '@taiga-ui/kit';
+import { TuiDataList, TuiDropdown } from '@taiga-ui/core';
+import { TuiChevron, TuiFade } from '@taiga-ui/kit';
 import { TuiNavigation } from '@taiga-ui/layout';
 import { ProjectsService } from '../../services/projects/projects.service';
 import { CommonModule } from '@angular/common';
@@ -15,9 +15,7 @@ import { Project } from '../../models/project.model';
     RouterLink,
     RouterLinkActive,
     TuiChevron,
-    TuiIcon,
     TuiDataList,
-    TuiDataListDropdownManager,
     TuiDropdown,
     TuiFade,
     TuiNavigation,
@@ -43,10 +41,6 @@ export class SidebarComponent {
     this.projectsService.projects$.subscribe((projects) => {
       this.projects = projects;
     });
-  }
-
-  noCloseProjects(event: Event) {
-    event.stopPropagation();
   }
 
 }
