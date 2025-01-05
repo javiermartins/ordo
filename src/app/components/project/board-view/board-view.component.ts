@@ -1,8 +1,8 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, INJECTOR, Input, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, INJECTOR, Input, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { TuiButton, TuiDialogOptions, TuiDialogService, TuiIcon, TuiDropdown, TuiDataList } from '@taiga-ui/core';
 import { TuiHeader } from '@taiga-ui/layout';
-import { startWith, tap } from 'rxjs';
+import { debounceTime, startWith, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { TaskDetailDialogComponent } from '../../../dialogs/task-detail-dialog/task-detail-dialog.component';
 import { TuiInputModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
@@ -27,7 +27,7 @@ import { ConfirmDeleteComponent } from '../../../dialogs/confirm-delete/confirm-
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardViewComponent implements AfterViewInit {
+export class BoardViewComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() project: Project;
   @ViewChildren('taskContainer', { read: CdkDropList })
   public taskContainerLists: QueryList<CdkDropList> = new QueryList<CdkDropList>;
@@ -35,14 +35,31 @@ export class BoardViewComponent implements AfterViewInit {
   public taskContainers: CdkDropList[] = [];
   public sectionToFocusId: string = null;
   public isAnyInputActive: boolean = false;
+  public focusedTaskIndex: number | null = null;
   private readonly dialogs = inject(TuiDialogService);
   private readonly injector = inject(INJECTOR);
+
+  private sectionUpdate$ = new Subject<Section>();
+  private taskUpdate$ = new Subject<{ section: Section, task: Task }>();
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private projectService: ProjectsService,
     private cd: ChangeDetectorRef,
     private firestore: AngularFirestore
   ) { }
+
+  ngOnInit() {
+    this.setupUpdateListener(
+      this.sectionUpdate$,
+      (section) => this.projectService.updateSection(this.project.id, section)
+    );
+
+    this.setupUpdateListener(
+      this.taskUpdate$,
+      ({ section, task }) => this.projectService.updateTask(this.project.id, section.id, task)
+    );
+  }
 
   ngAfterViewInit(): void {
     this.taskContainerLists.changes.pipe(
@@ -53,6 +70,23 @@ export class BoardViewComponent implements AfterViewInit {
         this.cd.detectChanges();
       }),
     ).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  setupUpdateListener<T>(subject: Subject<T>, updateFn: (data: T) => Promise<void>) {
+    subject
+      .pipe(
+        debounceTime(500),
+        switchMap(updateFn),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe({
+        error: (err) => console.error('Error updating:', err),
+      });
   }
 
   isTaskPredicate(item: CdkDrag<any>) {
@@ -124,11 +158,11 @@ export class BoardViewComponent implements AfterViewInit {
       order: maxOrder + 1
     };
     this.projectService.addSection(this.project.id, section).then((section) => {
-      this.focusInput(section);
+      this.focusInputSection(section);
     });
   }
 
-  focusInput(section: any) {
+  focusInputSection(section: any) {
     this.sectionToFocusId = section.id;
     setTimeout(() => {
       const inputElement = document.getElementById(section.id);
@@ -138,6 +172,13 @@ export class BoardViewComponent implements AfterViewInit {
     }, 100);
   }
 
+  focusInputTask(task: Task) {
+    const inputElement = document.getElementById(task.id);
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }
+
   updateSectionTitle(section: Section) {
     this.projectService.updateSection(this.project.id, section);
   }
@@ -145,7 +186,23 @@ export class BoardViewComponent implements AfterViewInit {
   taskCompleted(event: Event, section: Section, task: Task) {
     event.stopPropagation();
     task.completed = !task.completed;
-    this.projectService.updateTask(this.project.id, section.id, task);
+    this.updateTask(section, task);
+  }
+
+  updateTask(section: Section, task: Task) {
+    this.taskUpdate$.next({ section, task });
+  }
+
+  onFocusTask(index: number) {
+    this.focusedTaskIndex = index;
+  }
+
+  onBlurTask() {
+    this.focusedTaskIndex = null;
+  }
+
+  prevent(event: Event) {
+    event.stopPropagation();
   }
 
   confirmDeleteSection(section: Section) {
@@ -184,7 +241,9 @@ export class BoardViewComponent implements AfterViewInit {
       completed: false,
       createdDate: new Date()
     };
-    this.projectService.addTask(this.project.id, section.id, task);
+    this.projectService.addTask(this.project.id, section.id, task).then((newTask) => {
+      this.focusInputTask(newTask);
+    });
   }
 
   openTask(section: Section, task: Task) {

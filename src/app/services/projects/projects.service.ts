@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { BehaviorSubject, combineLatest, lastValueFrom, map, mergeMap, of, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, debounceTime, lastValueFrom, map, mergeMap, of, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Project, Section, Task } from '../../models/project.model';
@@ -20,25 +20,31 @@ export class ProjectsService {
 
   async getProjects() {
     const user = this.authService.user;
-    return await lastValueFrom(this.afs.collection(environment.PROJECTS_COLLECTION, ref => ref.where('ownerId', '==', user?.uid)).get()).then((res) => {
-      return res.docs.map(d => d.data());
-    });
+    if (user) {
+      return await lastValueFrom(this.afs.collection(environment.PROJECTS_COLLECTION, ref => ref.where('ownerId', '==', user.uid)).get()).then((res) => {
+        return res.docs.map(d => d.data());
+      });
+    } else {
+      return [];
+    }
   }
 
   loadProjects() {
     const user = this.authService.user;
 
-    this.afs.collection(environment.PROJECTS_COLLECTION, ref => ref.where('ownerId', '==', user?.uid))
-      .snapshotChanges()
-      .pipe(
-        map(actions => actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ...data as Object };
-        }))
-      ).subscribe((projects: any[]) => {
-        this.projectsSubject.next(projects);
-      });
+    if (user) {
+      this.afs.collection(environment.PROJECTS_COLLECTION, ref => ref.where('ownerId', '==', user.uid))
+        .snapshotChanges()
+        .pipe(
+          map(actions => actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data as Object };
+          }))
+        ).subscribe((projects: any[]) => {
+          this.projectsSubject.next(projects);
+        });
+    }
   }
 
   createNewProject(project: Project) {
@@ -68,7 +74,7 @@ export class ProjectsService {
             }
             return combineLatest(
               sections.map(section =>
-                this.afs.collection(`${sectionsUrl}/${section.id}/${environment.TASKS_COLLECTION}`).snapshotChanges().pipe(
+                this.afs.collection(`${sectionsUrl}/${section.id}/${environment.TASKS_COLLECTION}`).snapshotChanges().pipe(debounceTime(10),
                   map(taskActions => {
                     const tasks = taskActions.map(taskAction => {
                       const taskData = taskAction.payload.doc.data();
@@ -86,7 +92,7 @@ export class ProjectsService {
           })
         );
 
-        return combineLatest([of(project), sectionsWithTasks$]).pipe(
+        return combineLatest([of(project), sectionsWithTasks$]).pipe(debounceTime(10),
           map(([project, sectionsWithTasks]) => ({
             id: projectId,
             ...project as {},
@@ -131,9 +137,16 @@ export class ProjectsService {
       });
   }
 
-  addTask(projectId: string, sectionId: string, task: {}) {
-    return this.afs.collection(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${sectionId}/${environment.TASKS_COLLECTION}`).add(task);
+  async addTask(projectId: string, sectionId: string, task: {}) {
+    try {
+      const docRef = await this.afs.collection(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${sectionId}/${environment.TASKS_COLLECTION}`).add(task);
+      const doc = await docRef.get();
+      return { id: doc.id, ...doc.data() as any };
+    } catch (error) {
+      console.error("Error adding task: ", error);
+    }
   }
+
 
   updateTask(projectId: string, sectionId: string, task: Task) {
     return this.afs.doc(`${environment.PROJECTS_COLLECTION}/${projectId}/${environment.SECTIONS_COLLECTION}/${sectionId}/${environment.TASKS_COLLECTION}/${task.id}`).update(task);

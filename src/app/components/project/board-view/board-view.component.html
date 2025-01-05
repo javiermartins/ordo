@@ -25,13 +25,19 @@
                 <div cdkDropList #taskContainer id="{{section.id}}" [cdkDropListData]="section.tasks"
                     (cdkDropListDropped)="dropTask($event)" [cdkDropListEnterPredicate]="isTaskPredicate"
                     [cdkDropListConnectedTo]="taskContainers" class="min-h-20">
-                    @for (task of section.tasks; track task.id) {
+                    @for (task of section.tasks; track task.id; let i = $index) {
                     <div class="card-board" cdkDrag [cdkDragData]="task" (click)="openTask(section, task)">
                         <div class="card-title">
                             <input tuiCheckbox type="checkbox" [(ngModel)]="task.completed"
                                 class="!size-5 !rounded-full align-middle !mr-1 !my-[2px]"
                                 (click)="taskCompleted($event, section, task)" />
+                            @if(task.title && focusedTaskIndex !== i) {
                             <span [ngClass]="{'completed-task': task.completed}">{{task.title}}</span>
+                            } @else {
+                            <input [ngClass]="{'completed-task': task.completed}" [(ngModel)]="task.title"
+                                [attr.id]="task.id" (input)="updateTask(section, task)" (focus)="onFocusTask(i)"
+                                (blur)="onBlurTask()" (keyup.enter)="onBlurTask()" (click)="prevent($event)" />
+                            }
                         </div>
                     </div>
                     }
