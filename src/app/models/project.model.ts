@@ -18,5 +18,5 @@ export interface Task {
     description?: string;
     completed: boolean;
     order?: number;
-    createdDate: number;
+    createdDate: any;
 }

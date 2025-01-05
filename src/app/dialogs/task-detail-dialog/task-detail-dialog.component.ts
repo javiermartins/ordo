@@ -8,6 +8,7 @@ import { Task } from '../../models/project.model';
 import { ProjectsService } from '../../services/projects/projects.service';
 import { DatePipe } from '@angular/common';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
+import { toast, NgxSonnerToaster } from 'ngx-sonner';
 
 export class FormData {
   title: string;
@@ -21,7 +22,7 @@ export class FormData {
   imports: [
     ReactiveFormsModule, TuiInputModule, TuiTextfieldControllerModule, TuiButton,
     TuiDropdown, TuiTextareaModule, TuiDataList, TuiDataListDropdownManager, TuiCheckbox, TuiLabel, TuiIcon,
-    DatePipe
+    DatePipe, NgxSonnerToaster
   ],
   templateUrl: './task-detail-dialog.component.html',
   styleUrl: './task-detail-dialog.component.scss',
@@ -31,12 +32,14 @@ export class FormData {
 export class TaskDetailDialogComponent {
   protected readonly context =
     injectContext<TuiDialogContext<void, any>>();
+  protected readonly toast = toast;
 
   private readonly dialogs = inject(TuiDialogService);
   private readonly injector = inject(INJECTOR);
 
   public task: Task = this.context?.data?.task;
   public taskForm: FormGroup = new FormGroup('');
+  public optionsOpened: boolean = false;
   private projectId: string = this.context?.data?.projectId;
   private sectionId = this.context?.data?.sectionId;
 
@@ -96,6 +99,15 @@ export class TaskDetailDialogComponent {
     this.projectsService.deleteTask(this.projectId, this.sectionId, this.task.id).then(() => {
       this.context.completeWith();
     });
+  }
+
+  copyTask() {
+    const newTask = { ...this.task };
+    newTask.id = null;
+    newTask.createdDate = new Date();
+    this.projectsService.addTask(this.projectId, this.sectionId, this.task);
+    this.optionsOpened = false;
+    toast.success('Task successfully duplicated');
   }
 
 }

@@ -11,13 +11,16 @@
             </tui-input>
 
             <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
-                class="options-button " [tuiDropdown]="taskOptions" [tuiDropdownOpen]="false">
+                class="options-button " [tuiDropdown]="taskOptions" [(tuiDropdownOpen)]="optionsOpened">
                 Options
             </button>
             <ng-template #taskOptions>
                 <tui-data-list tuiDataListDropdownManager size="s">
-                    <button iconStart="@tui.trash" tuiOption type="button" class="!text-[var(--tui-text-negative)]"
-                        (click)="confirmDeleteTask()">
+                    <button iconStart="@tui.copy" tuiOption type="button" class="!justify-start" (click)="copyTask()">
+                        Duplicate task
+                    </button>
+                    <button iconStart="@tui.trash" tuiOption type="button"
+                        class="!justify-start !text-[var(--tui-text-negative)]" (click)="confirmDeleteTask()">
                         Delete task
                     </button>
                 </tui-data-list>
@@ -46,3 +49,5 @@
         </div>
     </form>
 </div>
+
+<ngx-sonner-toaster richColors />
