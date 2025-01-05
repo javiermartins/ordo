@@ -13,6 +13,7 @@ import { ProjectsService } from '../../../services/projects/projects.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from '../../../../environments/environment';
 import { CommonModule } from '@angular/common';
+import { ConfirmDeleteComponent } from '../../../dialogs/confirm-delete/confirm-delete.component';
 
 @Component({
   selector: 'app-board-view',
@@ -145,6 +146,27 @@ export class BoardViewComponent implements AfterViewInit {
     event.stopPropagation();
     task.completed = !task.completed;
     this.projectService.updateTask(this.project.id, section.id, task);
+  }
+
+  confirmDeleteSection(section: Section) {
+    const dialogOptions: Partial<TuiDialogOptions<any>> = {
+      closeable: false,
+      dismissible: true,
+      data: {
+        header: `Are you sure you want to delete "${section.title}"?`,
+        description: 'This action will permanently delete the section and all associated tasks.'
+      }
+    }
+
+    this.dialogs
+      .open(new PolymorpheusComponent(ConfirmDeleteComponent, this.injector), dialogOptions)
+      .subscribe({
+        next: async (value: any) => {
+          if (value) {
+            this.deleteSection(section);
+          }
+        },
+      });
   }
 
   deleteSection(section: Section) {

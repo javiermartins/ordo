@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, INJECTOR, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TuiButton, TuiDataList, TuiDialogContext, TuiDropdown, TuiIcon, TuiLabel } from '@taiga-ui/core';
+import { TuiButton, TuiDataList, TuiDialogContext, TuiDialogOptions, TuiDialogService, TuiDropdown, TuiIcon, TuiLabel } from '@taiga-ui/core';
 import { TuiCheckbox, TuiDataListDropdownManager } from '@taiga-ui/kit';
 import { TuiInputModule, TuiTextareaModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
-import { injectContext } from '@taiga-ui/polymorpheus';
+import { injectContext, PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { Task } from '../../models/project.model';
 import { ProjectsService } from '../../services/projects/projects.service';
 import { DatePipe } from '@angular/common';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 
 export class FormData {
   title: string;
@@ -30,6 +31,9 @@ export class FormData {
 export class TaskDetailDialogComponent {
   protected readonly context =
     injectContext<TuiDialogContext<void, any>>();
+
+  private readonly dialogs = inject(TuiDialogService);
+  private readonly injector = inject(INJECTOR);
 
   public task: Task = this.context?.data?.task;
   public taskForm: FormGroup = new FormGroup('');
@@ -65,6 +69,27 @@ export class TaskDetailDialogComponent {
     this.task.completed = formData.completed;
 
     this.projectsService.updateTask(this.projectId, this.sectionId, this.task);
+  }
+
+  confirmDeleteTask() {
+    const dialogOptions: Partial<TuiDialogOptions<any>> = {
+      closeable: false,
+      dismissible: true,
+      data: {
+        header: 'Are you sure you want to delete this task?',
+        description: 'This action cannot be undone.'
+      }
+    }
+
+    this.dialogs
+      .open(new PolymorpheusComponent(ConfirmDeleteComponent, this.injector), dialogOptions)
+      .subscribe({
+        next: async (value: any) => {
+          if (value) {
+            this.deleteTask();
+          }
+        },
+      });
   }
 
   deleteTask() {
