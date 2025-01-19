@@ -8,9 +8,10 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { NewProjectComponent } from './pages/new-project/new-project.component';
 import { ProjectComponent } from './pages/project/project.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '', pathMatch: 'full' },
+    { path: '', component: LandingPageComponent },
     { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
     { path: 'error', component: ErrorComponent },
     {
