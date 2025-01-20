@@ -15,7 +15,7 @@
                     <tui-data-list tuiDataListDropdownManager size="s">
                         <button iconStart="@tui.trash" tuiOption type="button" class="!text-[var(--tui-text-negative)]"
                             (click)="confirmDeleteSection(section)">
-                            Delete section
+                            {{ 'PROJECT.DELETESECTION' | translate }}
                         </button>
                     </tui-data-list>
                 </ng-template>
@@ -45,7 +45,7 @@
                 <div class="flex justify-center">
                     <button size="m" appearance="flat" tuiButton type="button" class="add-more-button"
                         (click)="addTask(section)">
-                        <tui-icon icon="@tui.plus" class="text-xl" /> Add more
+                        <tui-icon icon="@tui.plus" class="text-xl" /> {{ 'PROJECT.ADDMORE' | translate }}
                     </button>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <button size="m" appearance="flat" tuiButton tuiTitle type="button"
                     class="p-2 !text-[var(--color-text-weak)]" (click)="addSection()">
                     <span>
-                        <tui-icon icon="@tui.plus" class="text-xl" /> Add section
+                        <tui-icon icon="@tui.plus" class="text-xl" /> {{ 'PROJECT.ADDSECTION' | translate }}
                     </span>
                 </button>
             </div>

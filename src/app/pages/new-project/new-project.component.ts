@@ -9,11 +9,15 @@ import { MAX_PROJECTS } from '../../utils/constants';
 import { Project } from '../../models/project.model';
 import { toast, NgxSonnerToaster } from 'ngx-sonner';
 import { TuiTooltip } from '@taiga-ui/kit';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-project',
   standalone: true,
-  imports: [ReactiveFormsModule, TuiInputModule, TuiTextareaModule, TuiButton, NgxSonnerToaster, TuiIcon, TuiTooltip],
+  imports: [
+    ReactiveFormsModule, TuiInputModule, TuiTextareaModule, TuiButton,
+    NgxSonnerToaster, TuiIcon, TuiTooltip, TranslateModule
+  ],
   templateUrl: './new-project.component.html',
   styleUrl: './new-project.component.scss'
 })

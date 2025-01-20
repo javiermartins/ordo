@@ -4,6 +4,7 @@ import { TuiAppearance, TuiDataList, TuiDropdown, TuiIcon } from '@taiga-ui/core
 import { TuiAvatar } from '@taiga-ui/kit';
 import { TuiNavigation } from '@taiga-ui/layout';
 import { AuthService } from '../../services/auth/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ import { AuthService } from '../../services/auth/auth.service';
     TuiIcon,
     TuiNavigation,
     TuiDataList,
-    TuiDropdown
+    TuiDropdown,
+    TranslateModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

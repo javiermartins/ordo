@@ -6,6 +6,7 @@ import { TuiNavigation } from '@taiga-ui/layout';
 import { ProjectsService } from '../../services/projects/projects.service';
 import { CommonModule } from '@angular/common';
 import { Project } from '../../models/project.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,6 +20,7 @@ import { Project } from '../../models/project.model';
     TuiDropdown,
     TuiFade,
     TuiNavigation,
+    TranslateModule
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',

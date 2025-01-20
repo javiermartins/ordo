@@ -1,11 +1,11 @@
 <aside [style.height]="'calc(100vh - 48px)'" [tuiNavigationAside]="expanded">
     <a iconStart="@tui.home" tuiAsideItem [routerLink]="['/dashboard']">
-        Dashboard
+        {{ 'COMMON.DASHBOARD' | translate }}
     </a>
     <hr />
     <tui-aside-group [open]="true">
         <button iconStart="@tui.folder-closed" tuiAsideItem tuiChevron type="button">
-            Projects
+            {{ 'COMMON.PROJECTS' | translate }}
             <ng-template>
                 <button iconStart="@tui.circle" tuiAsideItem tuiFade type="button" *ngFor="let project of projects"
                     [routerLink]="['/', project.id]">
@@ -15,12 +15,12 @@
         </button>
     </tui-aside-group>
     <button iconStart="@tui.plus" tuiAsideItem type="button" [routerLink]="['/new-project']">
-        Add Project
+        {{ 'COMMON.ADDPROJECT' | translate }}
     </button>
     <footer>
         <button tuiAsideItem type="button" [iconStart]="expanded ? '@tui.chevron-left' : '@tui.chevron-right'"
             (click)="expanded = !expanded">
-            {{ expanded ? 'Collapse' : 'Expand' }}
+            {{ expanded ? ('COMMON.COLLAPSE' | translate) : ('COMMON.EXPAND' | translate) }}
         </button>
     </footer>
 </aside>

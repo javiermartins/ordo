@@ -9,6 +9,7 @@ import { ProjectsService } from '../../services/projects/projects.service';
 import { DatePipe } from '@angular/common';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 import { toast, NgxSonnerToaster } from 'ngx-sonner';
+import { TranslateModule } from '@ngx-translate/core';
 
 export class FormData {
   title: string;
@@ -22,7 +23,7 @@ export class FormData {
   imports: [
     ReactiveFormsModule, TuiInputModule, TuiTextfieldControllerModule, TuiButton,
     TuiDropdown, TuiTextareaModule, TuiDataList, TuiDataListDropdownManager, TuiCheckbox, TuiLabel, TuiIcon,
-    DatePipe, NgxSonnerToaster
+    DatePipe, NgxSonnerToaster, TranslateModule
   ],
   templateUrl: './task-detail-dialog.component.html',
   styleUrl: './task-detail-dialog.component.scss',

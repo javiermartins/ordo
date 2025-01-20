@@ -1,6 +1,7 @@
 <div class="new-project-container p-4">
     <div class="flex items-center mb-2">
-        <span class="text-lg">{{projects?.length}} of {{MAX_PROJECTS}} projects</span>
+        <span class="text-lg lowercase">{{projects?.length}} {{ 'COMMON.OF' | translate }} {{MAX_PROJECTS}} {{
+            'COMMON.PROJECTS' | translate }}</span>
         @if(projects?.length == MAX_PROJECTS) {
         <tui-icon icon="@tui.triangle-alert" class="text-2xl ml-2" tuiHintDirection="right"
             tuiTooltip="Maximum number of projects reached" appearance="warning" />
@@ -9,17 +10,17 @@
 
     <form [formGroup]="projectForm">
         <tui-input formControlName="name" class="no-shadow-input">
-            Project name
+            {{ 'COMMON.PROJECTNAME' | translate }}
             <input tuiTextfieldLegacy />
         </tui-input>
         <tui-textarea formControlName="description" class="mt-4 field-medium no-shadow-input" [expandable]="true"
             [maxLength]="400">
-            Description
+            {{ 'COMMON.DESCRIPTION' | translate }}
         </tui-textarea>
         <div class="mt-4 text-right">
             <button size="m" tuiButton type="submit" appearance="whiteblock" [disabled]="projectForm.invalid || saving"
                 (click)="submitProject()">
-                Submit
+                <tui-icon icon="@tui.plus" /> {{ 'COMMON.ADDPROJECT' | translate }}
             </button>
         </div>
     </form>

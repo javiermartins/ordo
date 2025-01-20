@@ -14,13 +14,14 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from '../../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { ConfirmDeleteComponent } from '../../../dialogs/confirm-delete/confirm-delete.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-board-view',
   standalone: true,
   imports: [FormsModule, DragDropModule, TuiHeader, TuiIcon, TuiButton, TuiInputModule,
     TuiTextfieldControllerModule, TuiDropdown, TuiDataList, TuiDataListDropdownManager,
-    TuiCheckbox, CommonModule
+    TuiCheckbox, CommonModule, TranslateModule
   ],
   templateUrl: './board-view.component.html',
   styleUrl: './board-view.component.scss',

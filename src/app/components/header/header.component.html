@@ -12,11 +12,11 @@
                 <button tuiOption type="button" class="!justify-start" (click)="closeMenu()"
                     [routerLink]="['settings']">
                     <tui-icon icon="@tui.settings" class="text-lg mr-2" />
-                    Settings
+                    {{ 'COMMON.SETTINGS' | translate }}
                 </button>
                 <button tuiOption type="button" class="!justify-start" (click)="logout()">
                     <tui-icon icon="@tui.log-out" class="text-lg mr-2" />
-                    Logout
+                    {{ 'COMMON.LOGOUT' | translate }}
                 </button>
             </tui-opt-group>
         </tui-data-list>

@@ -12,16 +12,16 @@
 
             <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
                 class="options-button " [tuiDropdown]="taskOptions" [(tuiDropdownOpen)]="optionsOpened">
-                Options
+                {{ 'COMMON.OPTIONS' | translate }}
             </button>
             <ng-template #taskOptions>
                 <tui-data-list tuiDataListDropdownManager size="s">
                     <button iconStart="@tui.copy" tuiOption type="button" class="!justify-start" (click)="copyTask()">
-                        Duplicate task
+                        {{ 'COMMON.DUPLICATE' | translate }}
                     </button>
                     <button iconStart="@tui.trash" tuiOption type="button"
                         class="!justify-start !text-[var(--tui-text-negative)]" (click)="confirmDeleteTask()">
-                        Delete task
+                        {{ 'COMMON.DELETE' | translate }}
                     </button>
                 </tui-data-list>
             </ng-template>
@@ -40,7 +40,9 @@
             <label tuiLabel class="mt-4">
                 <div>
                     <tui-icon icon="@tui.message-square" class="size-5 text-[var(--color-text-weak)] mr-1" />
-                    <span class="text-[var(--color-text-weak)] font-medium">Description</span>
+                    <span class="text-[var(--color-text-weak)] font-medium">
+                        {{ 'COMMON.DESCRIPTION' | translate }}
+                    </span>
                 </div>
                 <tui-textarea formControlName="description" class="field-medium no-shadow-input mt-1"
                     [expandable]="true" [maxLength]="400">

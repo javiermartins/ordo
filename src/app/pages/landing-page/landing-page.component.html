@@ -10,22 +10,22 @@
         <div class="container">
             <div class="mx-auto max-w-4xl text-center">
                 <h1 class="text-gray-900 bg-clip-text text-4xl font-bold sm:text-6xl">
-                    Gestiona tus proyectos con facilidad
+                    {{ 'LANDING.TITLE' | translate }}
                 </h1>
                 <p class="mt-6 text-lg text-gray-600">
-                    Ordo te ayuda a organizar tus tareas y alcanzar tus objetivos de manera eficiente. Simplifica tu
-                    flujo de trabajo y aumenta la productividad.
+                    {{ 'LANDING.DESCRIPTION' | translate }}
                 </p>
                 <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                    <button
+                    <button [routerLink]="['/dashboard']"
                         class="start-button w-full sm:w-auto transition duration-300 ease-in-out transform hover:scale-105 will-change-transform">
-                        Comenzar gratis
+                        {{ 'LANDING.STARTBUTTON' | translate }}
                         <tui-icon icon="@tui.move-right" class="ml-2 size-4" />
                     </button>
-                    <button
+                    <a href="https://github.com/javiermartins/ordo" target="_blank"
                         class="github-button flex items-center w-full sm:w-auto transition duration-300 ease-in-out transform hover:scale-105 will-change-transform">
-                        Ver en Github <img src="assets/img/github.svg" alt="GitHub icon" width="25px" class="ml-2">
-                    </button>
+                        {{ 'LANDING.GITHUBBUTTON' | translate }} <img src="assets/img/github.svg" alt="GitHub icon"
+                            width="25px" class="ml-2">
+                    </a>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
     <section class="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-gray-100">
         <div class="container px-4 md:px-6">
             <h2 class="text-gray-900 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12">
-                Características principales
+                {{ 'LANDING.MAINFEATURES' | translate }}
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -41,9 +41,9 @@
                         <div class="text-white bg-[#18181b] p-3 m-3 rounded-full">
                             <tui-icon icon="@tui.circle-check-big" class="size-10" />
                         </div>
-                        <h3 class="text-xl text-center font-bold mb-2">Gestión de tareas</h3>
+                        <h3 class="text-xl text-center font-bold mb-2">{{ 'LANDING.FEATURETITLE1' | translate }}</h3>
                         <p class="text-base text-center text-gray-500">
-                            Crea, asigna y realiza un seguimiento de las tareas con facilidad.
+                            {{ 'LANDING.FEATUREDESCRIPTION1' | translate }}
                         </p>
                     </div>
                 </div>
@@ -52,9 +52,9 @@
                         <div class="text-white bg-[#18181b] p-3 m-3 rounded-full">
                             <tui-icon icon="@tui.user" class="size-10" />
                         </div>
-                        <h3 class="text-xl text-center font-bold mb-2">Productividad personal</h3>
+                        <h3 class="text-xl text-center font-bold mb-2">{{ 'LANDING.FEATURETITLE2' | translate }}</h3>
                         <p class="text-base text-center text-gray-500">
-                            Trabaja de manera eficiente para maximizar tu rendimiento.
+                            {{ 'LANDING.FEATUREDESCRIPTION2' | translate }}
                         </p>
                     </div>
                 </div>
@@ -63,9 +63,9 @@
                         <div class="text-white bg-[#18181b] p-3 m-3 rounded-full">
                             <tui-icon icon="@tui.calendar" class="size-10" />
                         </div>
-                        <h3 class="text-xl text-center font-bold mb-2">Planificación de proyectos</h3>
+                        <h3 class="text-xl text-center font-bold mb-2">{{ 'LANDING.FEATURETITLE3' | translate }}</h3>
                         <p class="text-base text-center text-gray-500">
-                            Organiza y visualiza tus proyectos con tableros personalizables.
+                            {{ 'LANDING.FEATUREDESCRIPTION3' | translate }}
                         </p>
                     </div>
                 </div>

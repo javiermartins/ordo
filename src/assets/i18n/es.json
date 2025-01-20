@@ -1,0 +1,44 @@
+{
+    "COMMON": {
+        "ADDPROJECT": "Añadir proyecto",
+        "COLLAPSE": "Contraer",
+        "DASHBOARD": "Dashboard",
+        "DESCRIPTION": "Descripción",
+        "EXPAND": "Expandir",
+        "LOGOUT": "Cerrar sesión",
+        "NAME": "Nombre",
+        "EMAIL": "Email",
+        "OF": "de",
+        "OPTIONS": "Options",
+        "PROJECTS": "Proyectos",
+        "PROJECTNAME": "Nombre del proyecto",
+        "SETTINGS": "Ajustes",
+        "DELETE": "Eliminar",
+        "DUPLICATE": "Duplicar"
+    },
+    "LANDING": {
+        "TITLE": "Gestiona tus proyectos con facilidad",
+        "DESCRIPTION": "Ordo te ayuda a organizar tus tareas y alcanzar tus objetivos de manera eficiente. Simplifica tu flujo de trabajo y aumenta la productividad.",
+        "STARTBUTTON": "Comenzar gratis",
+        "GITHUBBUTTON": "Ver en Github",
+        "MAINFEATURES": "Características principales",
+        "FEATURETITLE1": "Gestión de tareas",
+        "FEATUREDESCRIPTION1": "Crea, asigna y realiza un seguimiento de las tareas con facilidad",
+        "FEATURETITLE2": "Productividad personal",
+        "FEATUREDESCRIPTION2": "Trabaja de manera eficiente para maximizar tu rendimiento",
+        "FEATURETITLE3": "Planificación de proyectos",
+        "FEATUREDESCRIPTION4": "Organiza y visualiza tus proyectos con tableros personalizables"
+    },
+    "LANGUAGES": {
+        "ENGLISH": "Inglés",
+        "SPANISH": "Español"
+    },
+    "PROJECT": {
+        "RESUME": "Resumen",
+        "BOARD": "Tablero",
+        "ADDMORE": "Añadir más",
+        "ADDSECTION": "Añadir sección",
+        "DELETEPROJECT": "Eliminar proyecto",
+        "DELETESECTION": "Eliminar sección"
+    }
+}

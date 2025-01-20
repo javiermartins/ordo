@@ -9,13 +9,14 @@ import { TuiInputModule } from '@taiga-ui/legacy';
 import { FormsModule } from '@angular/forms';
 import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { ConfirmDeleteComponent } from '../../dialogs/confirm-delete/confirm-delete.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-project',
   standalone: true,
   imports: [TuiTabs, BoardViewComponent, ResumeViewComponent,
     TuiDropdown, TuiDataList, TuiDataListDropdownManager, TuiButton,
-    TuiLoader, TuiInputModule, FormsModule
+    TuiLoader, TuiInputModule, FormsModule, TranslateModule
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'

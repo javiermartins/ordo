@@ -5,13 +5,13 @@
             <input [(ngModel)]="project.name" class="project-title w-full my-2" (input)="updateProjectTitle()" />
             <button appearance="flat" iconStart="@tui.ellipsis-vertical" size="s" tuiIconButton type="button"
                 class="options-button" [tuiDropdown]="sectionOptions" [tuiDropdownOpen]="false">
-                Options
+                {{ 'COMMON.OPTIONS' | translate }}
             </button>
             <ng-template #sectionOptions>
                 <tui-data-list tuiDataListDropdownManager size="s">
                     <button iconStart="@tui.trash" tuiOption type="button" class="!text-[var(--tui-text-negative)]"
                         (click)="confirmDelete()">
-                        Delete project
+                        {{ 'PROJECT.DELETEPROJECT' | translate }}
                     </button>
                 </tui-data-list>
             </ng-template>
@@ -19,13 +19,13 @@
 
         <tui-tabs [(activeItemIndex)]="activetab" class="px-4 max-h-9">
             <button iconStart="@tui.clipboard-minus" tuiTab type="button">
-                Resume
+                {{ 'PROJECT.RESUME' | translate }}
             </button>
             <!-- <button disabled iconStart="@tui.list" tuiTab type="button">
                     List
                 </button> -->
             <button iconStart="@tui.table" tuiTab type="button">
-                Board
+                {{ 'PROJECT.BOARD' | translate }}
             </button>
         </tui-tabs>
     </div>

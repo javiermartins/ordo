@@ -6,13 +6,14 @@ import { TuiDataListWrapper } from '@taiga-ui/kit';
 import { TuiInputModule, TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from "firebase/auth";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
   imports: [CommonModule,
     ReactiveFormsModule, TuiInputModule, TuiLabel, TuiTextfieldControllerModule,
-    TuiDataList, TuiDataListWrapper, TuiSelectModule
+    TuiDataList, TuiDataListWrapper, TuiSelectModule, TranslateModule
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'

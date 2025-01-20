@@ -10,7 +10,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const isAuth = authService.isAuthenticated();
 
   if (isAuth) {
-    router.navigate(['/']);
+    router.navigate(['/dashboard']);
     return false;
   }
   return true;

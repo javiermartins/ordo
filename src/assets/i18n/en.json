@@ -1,0 +1,44 @@
+{
+    "COMMON": {
+        "ADDPROJECT": "Add project",
+        "COLLAPSE": "Collapse",
+        "DASHBOARD": "Dashboard",
+        "DESCRIPTION": "Description",
+        "EXPAND": "Expand",
+        "LOGOUT": "Log out",
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "OF": "of",
+        "OPTIONS": "Options",
+        "PROJECTS": "Projects",
+        "PROJECTNAME": "Project name",
+        "SETTINGS": "Settings",
+        "DELETE": "Delete",
+        "DUPLICATE": "Duplicate"
+    },
+    "LANDING": {
+        "TITLE": "Manage your projects with ease",
+        "DESCRIPTION": "Ordo helps you organize your tasks and achieve your goals efficiently. Simplify your workflow and boost productivity.",
+        "STARTBUTTON": "Start for free",
+        "GITHUBBUTTON": "View on Github",
+        "MAINFEATURES": "Main features",
+        "FEATURETITLE1": "Task management",
+        "FEATUREDESCRIPTION1": "Create, assign, and track tasks with ease",
+        "FEATURETITLE2": "Personal productivity",
+        "FEATUREDESCRIPTION2": "Work efficiently to maximize your performance",
+        "FEATURETITLE3": "Project planning",
+        "FEATUREDESCRIPTION4": "Organize and visualize your projects with customizable boards"
+    },
+    "LANGUAGES": {
+        "ENGLISH": "English",
+        "SPANISH": "Spanish"
+    },
+    "PROJECT": {
+        "RESUME": "Summary",
+        "BOARD": "Board",
+        "ADDMORE": "Add more",
+        "ADDSECTION": "Add section",
+        "DELETEPROJECT": "Delete project",
+        "DELETESECTION": "Delete section"
+    }
+}

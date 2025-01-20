@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Project } from '../../models/project.model';
 import { MAX_PROJECTS } from '../../utils/constants';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CommonModule, RouterLink, TuiCardMedium, TuiHeader, TuiSurface, TuiTitle, TuiIcon],
+    imports: [CommonModule, RouterLink, TuiCardMedium, TuiHeader, TuiSurface, TuiTitle, TuiIcon, TranslateModule],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss'
 })
